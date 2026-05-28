@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 6 - Web Development Skills</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+
+  <main>
+    <div class="page-container">
+      <h2>Exercise 6</h2>
+
+      <!-- USER CODE AREA: You can add, edit, or modify your code below -->
+      <div class="code-area">
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Mangalore: The Coastal Cradle</title>
+        </head>
+        <frameset rows="70, *, 45" frameborder="0" framespacing="0">
+          <frame src="headerr.html" name="header" scrolling="no" noresize>
+            <frame src="contentt.html" name="main">
+              <frame src="foooter.html" name="footer" scrolling="no" noresize>
+                <noframes>
+
+                  <body>
+                    Your browser does not support frames.
+                  </body>
+                </noframes>
+        </frameset>
+
+        </html>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+          <style>
+            :root {
+              --primary: #3498db;
+              --secondary: #2c3e50;
+            }
+
+            body {
+              margin: 0;
+              font-family: sans-serif;
+              background: rgba(255, 255, 255, 0.9);
+            }
+
+            .header-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 5%;
+              border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+              background: white;
+            }
+
+            .header-left {
+              display: flex;
+              align-items: center;
+              gap: 12px;
+            }
+
+            .header-logo img {
+              width: 43px;
+              height: 43px;
+              border-radius: 12px;
+            }
+
+            .header-text h1 {
+              font-size: 22px;
+              margin: 0;
+              font-weight: 700;
+            }
+
+            .header-text span {
+              font-size: 10px;
+              text-transform: uppercase;
+              color: var(--primary);
+              font-weight: 600;
+            }
+
+            .nav-menu {
+              display: flex;
+              gap: 30px;
+            }
+
+            .nav-menu a {
+              text-decoration: none;
+              color: var(--secondary);
+              font-weight: 500;
+              font-size: 15px;
+            }
+
+            .nav-menu a:hover {
+              color: var(--primary);
+            }
+          </style>
+        </head>
+
+        <body>
+          <header class="header-container">
+            <div class="header-left">
+              <div class="header-logo">
+                <img src="C:\Users\vinay\Downloads\manglorelogo.jpg" alt="logo" />
+              </div>
+              <div class="header-text">
+                <h1>Mangaluru</h1>
+                <span>The Coastal Cradle</span>
+              </div>
+            </div>
+            <nav class="nav-menu">
+              <a href="contentt.html#home">Home</a>
+              <a href="contentt.html#places">Attraction</a>
+              <a href="contentt.html#contact">Contact</a>
+            </nav>
+          </header>
+        </body>
+
+        </html>
+        <!-- Add your HTML content for Exercise 6 here -->
+        <iframe name="output_frame" class="output-frame"
+          style="width: 100%; height: 500px; border: 2px solid var(--btn-color); margin-top: 20px; border-radius: 8px; background: white;"></iframe>
+      </div>
+      <!-- END USER CODE AREA -->
+
+      <div style="text-align: center;">
+        <a href="index.html" class="btn-back">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

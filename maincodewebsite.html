@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web Designing Skills, Skill Based Practical Course</title>
+    <!-- Use a modern Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --frame-bg: rgba(30, 41, 59, 0.7);
+            --frame-border: rgba(255, 255, 255, 0.1);
+            /* Gradients for buttons */
+            --btn-bg: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --btn-hover-bg: linear-gradient(135deg, #60a5fa, #a78bfa);
+            --btn-code-bg: linear-gradient(135deg, #10b981, #059669);
+            --btn-code-hover-bg: linear-gradient(135deg, #34d399, #10b981);
+            --btn-special-bg: linear-gradient(135deg, #f59e0b, #ef4444);
+            --btn-special-hover-bg: linear-gradient(135deg, #fbbf24, #f87171);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 2rem;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin: 0 0 0.5rem 0;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Frame/Tabular Section Styling with Glassmorphism */
+        .frame-section {
+            background: var(--frame-bg);
+            border: 1px solid var(--frame-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 480px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .frame-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        /* Animated underline for titles */
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .frame-section:hover .section-title::after {
+            width: 120px;
+        }
+
+        .frame-section:nth-child(1) .section-title::after {
+            background: var(--btn-bg);
+        }
+
+        .frame-section:nth-child(2) .section-title::after {
+            background: var(--btn-code-bg);
+        }
+
+        /* Tabular Layout for Buttons */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        /* Animated Button Styles */
+        .animated-btn {
+            background: var(--btn-bg);
+            color: white;
+            border: none;
+            padding: 1.2rem 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Shine effect on hover */
+        .animated-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+
+        .animated-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.5);
+            background: var(--btn-hover-bg);
+        }
+
+        .animated-btn:hover::before {
+            left: 100%;
+        }
+
+        .animated-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Second section specific styling */
+        .code-btn {
+            background: var(--btn-code-bg);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .code-btn:hover {
+            background: var(--btn-code-hover-bg);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .code-btn:active {
+            box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Mini Project styling - spans full width */
+        .special-btn {
+            grid-column: 1 / -1;
+            background: var(--btn-special-bg);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+            font-size: 1.2rem;
+            padding: 1.4rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .special-btn:hover {
+            background: var(--btn-special-hover-bg);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.5);
+        }
+
+        .special-btn:active {
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            main {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .frame-section {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+                /* Stack buttons on very small screens */
+            }
+
+            .frame-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Basic Web Designing Skills</h1>
+        <h2>Skill Based Practical Course</h2>
+    </header>
+    <main>
+        <!-- First Frame/Tabular Section -->
+        <section class="frame-section">
+            <div class="section-title">Practical Exercises</div>
+            <div class="button-grid">
+                <button class="animated-btn">Exercise 1</button>
+                <button class="animated-btn">Exercise 2</button>
+                <button class="animated-btn">Exercise 3</button>
+                <button class="animated-btn">Exercise 4</button>
+                <button class="animated-btn">Exercise 5</button>
+                <button class="animated-btn">Exercise 6</button>
+                <button class="animated-btn special-btn">Mini Project</button>
+            </div>
+        </section>
+        <!-- Second Frame/Tabular Section -->
+        <section class="frame-section">
+            <div class="section-title">Source Codes</div>
+            <div class="button-grid">
+                <button class="animated-btn code-btn">Exercise 1 Code</button>
+                <button class="animated-btn code-btn">Exercise 2 Code</button>
+                <button class="animated-btn code-btn">Exercise 3 Code</button>
+                <button class="animated-btn code-btn">Exercise 4 Code</button>
+                <button class="animated-btn code-btn">Exercise 5 Code</button>
+                <button class="animated-btn code-btn">Exercise 6 Code</button>
+                <button class="animated-btn special-btn code-btn">Mini Project Code</button>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

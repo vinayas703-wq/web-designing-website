@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub | Technology Tutorials</title>
+    <meta name="description" content="Technology and programming tutorials.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">EduHub</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="maths.html">Maths</a></li>
+                <li><a href="tech.html">Tech</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Technology Tutorials</h1>
+        <p>Learn modern programming languages, frameworks, and software development practices.</p>
+
+        <div class="glass-card" style="margin-top: 2rem;">
+            <h2>Introduction to Web Development</h2>
+            <p>Web development involves building websites and web applications. It consists of the front-end (what the user sees) and back-end (server-side logic).</p>
+            
+            <h3>HTML Boilerplate</h3>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="glass-card" style="margin-top: 2rem;">
+            <h2>Understanding APIs</h2>
+            <p>An Application Programming Interface (API) allows different software applications to communicate with each other.</p>
+            <h3>Fetching Data in JavaScript</h3>
+            <pre><code>fetch('https://api.example.com/data')
+  .then(response =&gt; response.json())
+  .then(data =&gt; console.log(data))
+  .catch(error =&gt; console.error('Error:', error));</code></pre>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EduHub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

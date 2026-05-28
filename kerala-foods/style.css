@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --blush-bg: #FCE4EC;
+  --blush-gradient: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+  --orchid-violet: #DA70D6;
+  --orchid-violet-hover: #BA55D3;
+  --text-dark: #333333;
+  --text-light: #555555;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* =========================================
+   Home Page Styles
+   ========================================= */
+.home-body {
+  background: var(--blush-gradient);
+  overflow-x: hidden;
+}
+
+/* Marquee Container */
+.marquee-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.marquee-content {
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  font-weight: 600;
+  color: var(--orchid-violet);
+  font-size: 1.1rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Animated Title */
+header {
+  text-align: center;
+  padding: 3rem 1rem 1rem;
+}
+
+.animated-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #DA70D6, #FF69B4, #DA70D6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+  background-size: 200% auto;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Food Grid & Glassmorphism Cards */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.food-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  text-align: center;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.food-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px 0 rgba(31, 38, 135, 0.2);
+}
+
+.food-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.food-card:hover img {
+  transform: scale(1.05);
+}
+
+.food-card h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-animated {
+  display: inline-block;
+  margin-top: auto;
+  padding: 8px 20px;
+  background-color: var(--orchid-violet);
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  animation: pulseButton 2s infinite;
+  box-shadow: 0 4px 15px rgba(218, 112, 214, 0.4);
+}
+
+.btn-animated:hover {
+  background-color: var(--orchid-violet-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(218, 112, 214, 0.6);
+}
+
+@keyframes pulseButton {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(218, 112, 214, 0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(218, 112, 214, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(218, 112, 214, 0); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* =========================================
+   Food Detail Pages Styles
+   ========================================= */
+.food-page {
+  background: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  box-shadow: var(--glass-shadow);
+  max-width: 900px;
+  width: 100%;
+  padding: 3rem;
+}
+
+.food-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.food-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Animated Image */
+.food-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.food-content h2 {
+  color: var(--orchid-violet);
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--blush-bg);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.food-content p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-align: justify;
+}
+
+.food-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.food-content ul li {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.food-content ul li::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  color: var(--orchid-violet);
+}
+
+/* Blinking Text */
+.blink {
+  animation: blinker 1.5s linear infinite;
+  color: #d81b60;
+  font-weight: bold;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+/* Button Container & Orchid Violet Button */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.btn-home {
+  background-color: var(--orchid-violet);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(218, 112, 214, 0.4);
+  display: inline-block;
+  animation: pulseHome 2s infinite;
+}
+
+@keyframes pulseHome {
+  0% { box-shadow: 0 0 0 0 rgba(218, 112, 214, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(218, 112, 214, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(218, 112, 214, 0); }
+}
+
+.btn-home:hover {
+  background-color: var(--orchid-violet-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(218, 112, 214, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .animated-title {
+    font-size: 2.5rem;
+  }
+  
+  .glass-panel {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,152 @@
+<html>
+    <head>
+      <title>Garden Fresh</title>
+      <style>
+        table, th, td {
+            border: 2px solid black; 
+            border-collapse: collapse; 
+            padding: 8px; 
+        }
+        .center-image 
+        {
+        display: block;
+        margin: 0 auto;
+       }
+       .button-center {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    #cart {
+        margin: 20px auto;
+        width: 50%;
+        border: 2px solid black;
+        padding: 10px;
+    }
+    </style>
+      <body bgcolor="lightblue">
+        <img src="E:\WDS-Lab\header.png_files\vegitable.png_files\image003.png" alt="Description" class="center-image">
+      </body>
+      <table align="center">
+        <thead>
+        <tr>
+            <td>vegitable</td>
+            <td>price</td>
+            <td>add to cart</td>
+            <td>vegitable</td>
+            <td>price</td>
+            <td>add to cart</td>
+            <td>vegitable</td>
+            <td>price</td>
+            <td>add to cart</td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+            <td><img src="E:\WDS-Lab\tomatoes.jpge" alt="tamato" width="200"></td>
+            <td width="100">₹35</td>
+            <td><button  onclick="addToCart('tamato',35)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\freshspinach.webp" alt="Spinach" width="200"></td>
+            <td width="100">₹50</td>
+            <td><button  onclick="addToCart('Spinach',35)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\broccoli.webp" alt="Broccoli" width="150"></td>
+            <td width="100">₹70</td>
+            <td><button  onclick="addToCart('Broccoli',35)">Add to Cart</button></td>
+                
+                
+            </tr>
+         <tr>
+            <td><img src="E:\WDS-Lab\newbrinjal.webp" alt="brinjal" width="200"></td>
+            <td width="100">₹40</td>
+            <td><button  onclick="addToCart('brinjal', 40)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\Cabbage.webp" alt="Cabbage" width="200"></td>
+            <td width="100">₹70</td>
+            <td><button  onclick="addToCart('Cabbage',35)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\cucumber.webp" alt="Cucumber" width="200"></td>
+            <td width="100">₹110</td>
+            <td><button  onclick="addToCart('Cucumber',35)">Add to Cart</button></td>
+         </tr>
+         <tr>
+            <td><img src="E:\WDS-Lab\patoto.webp" alt="potato" width="200"</td>
+            <td width="100">₹45</td>
+            <td><button  onclick="addToCart('potato',45)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\ginger-root.webp" alt="Ginger" width="200"></td>
+            <td width="100">₹60</td>
+            <td><button  onclick="addToCart('Garlic',35)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\Pavakka.webp" alt="BitterGourd" width="200"></td>
+            <td width="100">₹110</td>
+            <td><button  onclick="addToCart('BitterGourd',35)">Add to Cart</button></td>
+         </tr>
+         <tr>
+            <td><img src="E:\WDS-Lab\Onion.webp" alt="onion" width="200"></td>
+            <td width="100">₹40</td>
+            <td><button  onclick="addToCart('onion',40)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\ladiesfinger.jpg" alt="ladiesfinger" width="200"></td>
+            <td width="100">₹120</td>
+            <td><button  onclick="addToCart('ladiesfinger',40)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\peas.webp" alt="peas" width="200"></td>
+            <td width="100">₹40</td>
+            <td><button  onclick="addToCart('Peas',40)">Add to Cart</button></td>
+         </tr>
+         <tr>
+            <td><img src="E:\WDS-Lab\carrots.webp" alt="carrot" width="200"></td>
+            <td>₹55</td>
+            <td><button  onclick="addToCart('carrot',55)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\Bell-peppers.webp" alt="Capsicum" width="200"></td>
+            <td width="100">₹120</td>
+            <td><button  onclick="addToCart('Capsicum',40)">Add to Cart</button></td>
+            <td><img src="E:\WDS-Lab\beeteroot.webp" alt="Beetroot" width="200"></td>
+            <td width="100">₹120</td>
+            <td><button  onclick="addToCart('Beetroot',40)">Add to Cart</button></td>
+         </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="button-center" onclick="placeOrder()">ORDER NOW</button>
+
+      <div id="cart">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+  </div>
+   
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(item, price) {
+      cart.push({item, price});
+      total += price;
+      displayCart();
+    }
+
+ function displayCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach(c => {
+        let li = document.createElement("li");
+        li.textContent = c.item + " - ₹" + c.price;
+        cartItems.appendChild(li);
+      });
+      document.getElementById("cart-total").textContent = total;
+    }
+    
+    function placeOrder() {
+      if(cart.length === 0) {
+        alert("Your cart is empty!");
+      } else {
+        alert("Order placed successfully! Total: ₹" + total);
+        cart = [];
+        total = 0;
+        displayCart();
+      }
+    }
+  </script>
+   
+
+    </head>
+</html>

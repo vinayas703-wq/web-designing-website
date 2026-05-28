@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 4 - Web Development Skills</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+
+  <main>
+    <div class="page-container">
+      <h2>Exercise 4</h2>
+
+      <!-- USER CODE AREA: You can add, edit, or modify your code below -->
+      <div class="code-area">
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Student Mark Card - Class X</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 30px 20px;
+              background-color: #f0f4f8;
+              font-family: 'Times New Roman', Times, serif;
+              min-height: 100vh;
+            }
+
+            .card {
+              max-width: 900px;
+              margin: 0 auto;
+              background-color: #ffffff;
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+              border: 2px solid #003366;
+            }
+
+            .header h1 {
+              margin: 0;
+              font-size: 22px;
+              font-weight: bold;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+            }
+
+            .header .subtitle {
+              margin: 4px 0 0;
+              font-size: 13px;
+              color: #c8d8f0;
+              letter-spacing: 0.5px;
+            }
+
+            .header-bottom {
+              margin-top: 14px;
+              padding-top: 12px;
+              border-top: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            .header h2 {
+              margin: 0;
+              font-size: 20px;
+              font-weight: bold;
+              letter-spacing: 2px;
+              color: #ffd700;
+            }
+
+            .header .exam-year {
+              margin: 4px 0 0;
+              font-size: 13px;
+              color: #c8d8f0;
+            }
+
+            .body {
+              padding: 24px 30px;
+            }
+
+            .student-info-row {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              margin-bottom: 24px;
+              gap: 20px;
+            }
+
+            .student-details {
+              flex: 1;
+            }
+
+            table.info-table {
+              border-collapse: collapse;
+              font-size: 13px;
+              width: 100%;
+            }
+
+            table.info-table td {
+              padding: 7px 10px;
+            }
+
+            table.info-table td.label {
+              font-weight: bold;
+              color: #003366;
+              width: 40%;
+            }
+
+            table.info-table tr:nth-child(odd) {
+              background-color: #e8f0fe;
+            }
+
+            table.info-table tr:nth-child(even) {
+              background-color: #ffffff;
+            }
+
+            .photo-box {
+              text-align: center;
+              flex-shrink: 0;
+            }
+
+            .photo-wrapper {
+              border: 2px solid #003366;
+              padding: 4px;
+              background-color: #f5f5f5;
+              display: inline-block;
+            }
+
+            .photo-wrapper img {
+              display: block;
+              object-fit: cover;
+            }
+
+            .photo-label {
+              margin: 6px 0 0;
+              font-size: 11px;
+              color: #555;
+              font-style: italic;
+            }
+
+            table.marks-table {
+              border-collapse: collapse;
+              font-size: 13px;
+              width: 100%;
+            }
+
+            table.marks-table caption {
+              caption-side: top;
+              font-size: 14px;
+              font-weight: bold;
+              color: #003366;
+              padding: 8px 0 10px;
+              text-align: center;
+              letter-spacing: 0.5px;
+            }
+
+            table.marks-table th {
+              background-color: #003366;
+              color: #ffffff;
+              padding: 10px 8px;
+              font-weight: bold;
+              font-size: 12px;
+              text-align: center;
+              vertical-align: middle;
+            }
+
+            table.marks-table td {
+              padding: 8px;
+              vertical-align: middle;
+              text-align: center;
+            }
+
+            table.marks-table tbody tr:nth-child(odd) {
+              background-color: #f7f9ff;
+            }
+
+            table.marks-table tbody tr:nth-child(even) {
+              background-color: #ffffff;
+            }
+
+            .scholastic-cell {
+              background-color: #e8f4e8;
+              font-weight: bold;
+              color: #1a5c1a;
+              font-size: 12px;
+            }
+
+            .co-scholastic-cell {
+              background-color: #fff4e8;
+              font-weight: bold;
+              color: #7a3200;
+              font-size: 12px;
+            }
+
+            .grade-a {
+              color: #1a5c1a;
+              font-weight: bold;
+            }
+
+            .grade-b {
+              color: #7a5200;
+              font-weight: bold;
+            }
+
+            table.marks-table tfoot tr {
+              background-color: #dce8ff;
+            }
+
+            table.marks-table tfoot td {
+              padding: 10px 8px;
+              font-weight: bold;
+              font-size: 13px;
+              color: #003366;
+            }
+
+            .tfoot-total {
+              text-align: right;
+            }
+
+            .tfoot-marks {
+              color: #003366;
+            }
+
+            .tfoot-pct {
+              color: #1a5c1a;
+            }
+
+            .result-row {
+              margin-top: 20px;
+              display: flex;
+              justify-content: space-between;
+              gap: 16px;
+            }
+
+            .result-panel {
+              flex: 1;
+              border: 2px solid #003366;
+              padding: 12px 16px;
+              background-color: #e8f4e8;
+            }
+
+            table.result-table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            table.result-table td {
+              padding: 4px;
+              font-size: 13px;
+            }
+
+            table.result-table td.r-label {
+              font-weight: bold;
+              color: #003366;
+              width: 40%;
+            }
+
+            .result-pass {
+              font-weight: bold;
+              font-size: 16px;
+              color: #1a5c1a;
+            }
+
+            .result-division {
+              font-weight: bold;
+              color: #7a3200;
+            }
+
+            .result-pct {
+              font-weight: bold;
+            }
+
+            .grade-panel {
+              flex: 1;
+              border: 1px solid #ccc;
+              padding: 12px 16px;
+              background-color: #f9f9f9;
+            }
+
+            .grade-panel h4 {
+              margin: 0 0 6px;
+              font-size: 12px;
+              font-weight: bold;
+              color: #003366;
+            }
+
+            table.grade-scale-table {
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            table.grade-scale-table td {
+              font-size: 11px;
+              padding: 2px 4px;
+            }
+
+            table.grade-scale-table td.g-code {
+              font-weight: bold;
+              color: #1a5c1a;
+              width: 28px;
+            }
+
+            table.grade-scale-table td.g-range {
+              color: #555;
+              width: 50px;
+            }
+
+            table.grade-scale-table td.g-desc {
+              color: #333;
+            }
+
+            .signatures {
+              margin-top: 32px;
+              display: flex;
+              justify-content: space-between;
+              padding-top: 8px;
+            }
+
+            .sig-box {
+              text-align: center;
+              min-width: 160px;
+            }
+
+            .sig-line {
+              border-bottom: 1px solid #555;
+              margin-bottom: 6px;
+              height: 36px;
+            }
+
+            .sig-label {
+              margin: 0;
+              font-size: 12px;
+              font-weight: bold;
+              color: #003366;
+            }
+
+            .note {
+              margin-top: 20px;
+              padding: 10px 14px;
+              background-color: #fffde7;
+              border: 1px solid #f0c040;
+              font-size: 11px;
+              color: #555;
+              line-height: 1.6;
+            }
+
+            .footer {
+              background-color: #003366;
+              color: #c8d8f0;
+              text-align: center;
+              padding: 10px 20px;
+              font-size: 11px;
+            }
+
+            .footer a {
+              color: #ffd700;
+              text-decoration: none;
+            }
+          </style>
+        </head>
+
+        <body>
+          <div class="card">
+            <div class="header">
+              <div class="header-top">
+                <div>
+                  <img src="E:\WDS-Lab\Doc1_files\image003.png" 313 alt="NITK Logo" width="900" height="80" />
+
+                </div>
+              </div>
+              <div class="header-bottom">
+                <h2>SECONDARY SCHOOL CERTIFICATE — CLASS X</h2>
+                <p class="exam-year">Annual Examination — Academic Year 2024-25</p>
+              </div>
+            </div>
+            <div class="body">
+
+              <div class="student-info-row">
+                <div class="student-details">
+                  <table class="info-table" border="1" cellpadding="6" cellspacing="0" 330 width="100%"
+                    summary="Student personal and academic details">
+                    <tbody>
+                      <tr>
+                        <td class="label">Student Name</td>
+                        <td><strong>Anuradha</strong></td>
+                      </tr>
+                      <tr>
+                        <td class="label">Roll Number</td>
+                        <td>2024-10-0547</td>
+                      </tr>
+                      <tr>
+                        <td class="label">Date of Birth</td>
+                        <td>15-August-2009</td>
+                      </tr>
+                      <tr>
+                        <td class="label">school</td>
+                        <td>NITK English Medium School, Surathkal, Karnataka</td>
+                      </tr>
+                      <tr>
+                        <td class="label">Board</td>
+                        <td>CBSE, New Delhi</td>
+                      </tr>
+
+                      <tr>
+                        <td class="label">Academic Year</td>
+                        <td>2024-25</td>
+                      </tr>
+                      <tr>
+                        <td class="label">Class</td>
+                        <td>X (10th Standard)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="photo-box">
+                  <div class="photo-wrapper">
+                    <!-- Replace src with an actual passport photo -->
+                    <img src="E:\WDS-Lab\Anuradha.jpg" 347 alt="Anuradha - Candidate Photo" 348 width="130"
+                      height="200" />
+                  </div>
+                  <p class="photo-label">Anuradha</p>
+                </div>
+              </div>
+              <!-- MARKS TABLE -->
+              <table class="marks-table" border="1" cellpadding="8" cellspacing="0" 356 width="100%" align="center" 357
+                summary="Marks obtained by the student in Class X Annual Examination 2024-25">
+                <caption>STATEMENT OF MARKS — ANNUAL EXAMINATION 2024-25</caption>
+                <colgroup>
+                  <col span="1" style="width:5%;" />
+                  <col span="1" style="width:20%;" />
+                  <col span="1" style="width:15%;" />
+                  <col span="1" style="width:15%;" />
+                  <col span="1" style="width:15%;" />
+                  <col span="1" style="width:10%;" />
+                  <col span="1" style="width:20%;" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col">S.No</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Max. Marks</th>
+                    <th scope="col">Marks Obtained</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Remarks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1: rowspan=7 for Scholastic Area -->
+                  <tr>
+                    <td align="center">1</td>
+                    <td align="left">English</td>
+                    <td rowspan="7" align="center" valign="middle" class="scholastic-cell">Scholastic<br />Area</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>88</strong></td>
+                    <td align="center" class="grade-a">A1</td>
+                    <td align="center">Excellent</td>
+                  </tr>
+                  <tr>
+                    <td align="center">2</td>
+                    <td align="left">Hindi</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>76</strong></td>
+                    <td align="center" class="grade-b">B1</td>
+                    <td align="center">Good</td>
+                  </tr>
+                  <tr>
+                    <td align="center">3</td>
+                    <td align="left">Mathematics</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>92</strong></td>
+                    <td align="center" class="grade-a">A1</td>
+                    <td align="center">Outstanding</td>
+                  </tr>
+                  <tr>
+                    <td align="center">4</td>
+                    <td align="left">Science</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>84</strong></td>
+                    <td align="center" class="grade-a">A2</td>
+                    <td align="center">Very Good</td>
+                  </tr>
+                  <tr>
+                    <td align="center">5</td>
+                    <td align="left">Social Science</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>79</strong>
+                    </td>
+                    <td align="center" class="grade-b">B1</td>
+                    <td align="center">Good</td>
+                  </tr>
+                  <tr>
+                    <td align="center">6</td>
+                    <td align="left">Computer Science</td>
+                    <td align="center">100 </td>
+                    <td align="center"><strong>95</strong> </td>
+                    <td align="center" class="grade-a">A1</td>
+                    <td align="center">Outstanding</td>
+                  </tr>
+                  <tr>
+                    <td align="center">7</td>
+                    <td align="left">Sanskrit</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong> 71</strong>
+                    </td>
+                    <td align="center" class="grade-b">B2</td>
+                    <td align="center">Satisfactory</td>
+                  </tr>
+                  <tr>
+                    <td align="center">8</td>
+                    <td align="left">Physical Education</td>
+                    <td align="center" valign="middle" class="co-scholastic-cell">Co-Scholastic<br />Area</td>
+                    <td align="center">100</td>
+                    <td align="center"> <strong> 88</strong>
+                    </td>
+                    <td align="center" class="grade-a">A1</td>
+                    <td align="center">Excellent</td>
+                  </tr>
+                  <tr>
+                    <td align="center">9</td>
+                    <td align="left">Art &amp; Craft</td>
+                    <td align="center" valign="middle" class="co-scholastic-cell">Co-Scholastic<br />Area</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>90</strong></td>
+                    <td align="center" class="grade-a">A1</td>
+                    <td align="center">Excellent</td>
+                  </tr>
+                  <tr>
+                    <td align="center">10</td>
+                    <td align="left">Music</td>
+                    <td align="center" valign="middle" class="co-scholastic-cell">Co-Scholastic<br />Area</td>
+                    <td align="center">100</td>
+                    <td align="center"><strong>82</strong></td>
+                    <td align="center" class="grade-a">A2</td>
+                    <td align="center">Very Good</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" align="right" class="tfoot-total">GRAND TOTAL</td>
+                    <td align="center" class="tfoot-marks">1000</td>
+                    <td align="center" class="tfoot-marks">
+                    </td>
+
+                    <td colspan="2" align="center" class="tfoot-pct">Percentage: 84.5%</td>
+
+                  </tr>
+
+                </tfoot>
+
+              </table>
+
+              <!-- Result + Grade Scale -->
+
+              <div class="result-row">
+                <div class="result-panel">
+                  <table class="result-table " border="0" cellpadding="4" cellspacing="0" 487 width="100%"
+                    summary="Result summary">
+                    <tbody>
+                      <tr>
+                        <td class="r-label">Result</td>
+                        <td class="result-pass">&#10004; PASS</td>
+                      </tr>
+                      <tr>
+                        <td class="r-label">Total Marks</td>
+                        <td>845 / 1000</td>
+                      </tr>
+                      <tr>
+                        <td class="r-label">Percentage</td>
+                        <td class="result-pct">84.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="r-label">Division</td>
+                        <td class="result-division">First Division</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="grade-panel">
+                  <h4>GRADE SCALE:</h4>
+                  <table class="grade-scale-table" border="0" cellpadding="2" cellspacing="0" 512 width="100%"
+                    summary="Grade scale reference">
+                    <tbody>
+                      <tr>
+                        <td class="g-code">A1</td>
+                        <td class="g-range">91–100</td>
+                        <td class="g-desc">Outstanding</td>
+                      </tr>
+                      <tr>
+                        <td class="g-code">A2</td>
+                        <td class="g-range">81–90</td>
+                        <td class="g-desc">Excellent</td>
+                      </tr>
+                      <tr>
+                        <td class="g-code">B1</td>
+                        <td class="g-range">71–80</td>
+                        <td class="g-desc">Very Good</td>
+                      </tr>
+                      <tr>
+                        <td class="g-code">B2</td>
+                        <td class="g-range">61–70</td>
+                        <td class="g-desc">Good</td>
+                      </tr>
+
+                      <tr>
+                        <td class="g-code">C1</td>
+                        <td class="g-range">51–60</td>
+                        <td class="g-desc">Average</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Signatures -->
+              <div class="signatures">
+                <div class="sig-box">
+                  <div class="sig-line">
+                  </div>
+                  <p class="sig-label">Class Teacher</p>
+                </div>
+                <div class="sig-box">
+                  <div class="sig-line">
+                  </div>
+                  <p class="sig-label">Examination Controller</p>
+                </div>
+                <div class="sig-box">
+                  <div class="sig-line"></div>
+                  <p class="sig-label">Principal</p>
+                </div>
+              </div>
+              <!-- Note -->
+              <div class="note">
+                <strong>Note:</strong>
+                This is a computer-generated mark card. Any discrepancy must be
+                reported within 15 days of issuance. Results are subject to verification by the Board.
+                Marks are as per CBSE grading norms for Class X Annual Examination 2024-25.
+              </div>
+            </div>
+            <div class="footer">
+              NITK English Medium School, Surathkal, Karnataka | Affiliated to CBSE, New Delhi | Affiliation No: 1234567
+            </div>
+          </div>
+        </body>
+
+        </html>
+
+        <!-- Add your HTML content for Exercise 4 here -->
+        <p> </p>
+      </div>
+      <!-- END USER CODE AREA -->
+
+      <div style="text-align: center;">
+        <a href="basic_web_designing_skills.html" class="btn-back">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

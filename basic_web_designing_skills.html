@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web Designing Skills, Skill Based Practical Course</title>
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --frame-bg: #ffffff;
+            --text-color: #2c3e50;
+            --heading-color: #1a252f;
+
+            --btn-grad-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --btn-grad-1-hover: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+
+            --btn-grad-2: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+            --btn-grad-2-hover: linear-gradient(135deg, #ffb199 0%, #ff0844 100%);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--heading-color);
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            line-height: 1.3;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Frame/Tabular Section Styling */
+        .frame-section {
+            background-color: var(--frame-bg);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 1px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .frame-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+        }
+
+        .frame-section.exercises::before {
+            background: var(--btn-grad-1);
+        }
+
+        .frame-section.codes::before {
+            background: var(--btn-grad-2);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: var(--heading-color);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Grid for buttons */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            justify-content: center;
+        }
+
+        /* Animated Button Base Styling */
+        .animated-button {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+        }
+
+        .animated-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+            z-index: -2;
+        }
+
+        .animated-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        .animated-button:hover::before {
+            width: 100%;
+        }
+
+        .animated-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .animated-button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Specific Button Themes */
+        .btn-exercise {
+            background: var(--btn-grad-1);
+        }
+
+        .btn-code {
+            background: var(--btn-grad-2);
+        }
+
+        /* Animation for page load */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .frame-section {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .frame-section.exercises {
+            animation-delay: 0.1s;
+        }
+
+        .frame-section.codes {
+            animation-delay: 0.3s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .frame-section {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            box-shadow: none;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+            position: relative;
+
+
+
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #333;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-btn:hover {
+            color: #e74c3c;
+        }
+
+        #modalTitle {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+    </style>
+    <script>
+        function openCodeModal(title, url) {
+            document.getElementById('codeFrame').src = url;
+            const modal = document.getElementById('codeModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('codeModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.getElementById('codeFrame').src = '';
+            }, 300);
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('codeModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <a href="about.html">About</a>
+        <a href="resources.html">Resources</a>
+    </nav>
+
+    <header>
+
+        <h1>Basic Web Designing Skills, Skill Based Practical Course</h1>
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+            alt="Web Development Tools"
+            style="width: 100%; max-width: 600px; border-radius: 20px; margin: 10px auto 30px; display: block; box-shadow: 0 15px 30px rgba(0,0,0,0.1); border: 3px solid rgba(255,255,255,0.5); position: relative; z-index: 2;">
+    </header>
+
+    <div class="main-container">
+
+        <!-- Section 1: Exercises Frame -->
+        <div class="frame-section exercises">
+            <h2 class="section-title">Practical Exercises</h2>
+            <div class="button-grid">
+                <a href="exercise-1.html" class="animated-button btn-exercise">Exercise 1</a>
+                <a href="exercise-2.html" class="animated-button btn-exercise">Exercise 2</a>
+                <a href="exercise-3.html" class="animated-button btn-exercise">Exercise 3</a>
+                <a href="exercise-4.html" class="animated-button btn-exercise">Exercise 4</a>
+                <a href="exercise-5.html" class="animated-button btn-exercise">Exercise 5</a>
+                <a href="exercise-6.html" class="animated-button btn-exercise">Exercise 6</a>
+                <a href="project.html" class="animated-button btn-exercise">Mini Project</a>
+            </div>
+        </div>
+
+        <!-- Section 2: Exercise Codes Frame -->
+        <div class="frame-section codes">
+            <h2 class="section-title">Source Codes</h2>
+            <div class="button-grid">
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 1', 'exercise-1-code.txt')">Exercise 1 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 2', 'exercise-2-code.txt')">Exercise 2 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 3', 'exercise-3-code.txt')">Exercise 3 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 4', 'exercise-4-code.txt')">Exercise 4 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 5', 'exercise-5-code.txt')">Exercise 5 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Exercise 6', 'exercise-6-code.txt')">Exercise 6 Code</button>
+                <button class="animated-button btn-code"
+                    onclick="openCodeModal('Mini Project', 'project-code.txt')">Mini Project Code</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal Background -->
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="codeFrame" src=""
+                style="display: block; width: 100%; height: 100%; border: none; background: #ffffff;"></iframe>
+        </div>
+    </div>
+
+
+    <!-- CODE TEMPLATES -->
+    <template id='code-exercise-1'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 1 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 1&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+        &lt;div class="code-area"&gt;
+
+        &lt;!DOCTYPE HTML&gt;
+        &lt;html&gt;
+
+        &lt;head&gt;
+        &lt;title&gt;Indian cricket legends&lt;/title&gt;
+        &lt;/head&gt;
+
+        &lt;body bgcolor="#f0f8ff" text="#333333"&gt;
+
+        &lt;header&gt;
+        &lt;h1 align="center"&gt;
+        &lt;font color="#0038a8" soze="7" face="Arial&gt;Indian Cricket Superstars&lt;/font&gt;
+        &lt;/h1&gt;
+        &lt;p align=" center"&gt;
+        &lt;font size="4"&gt;Celebrating the heroes of the "Men in Blue"&lt;/font&gt;
+        &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;hr size="5" color="#ff9933"&gt;
+
+        &lt;marquee bgcolor="#0038a3" height="40" direction="left" scrollamount="10"&gt;
+        font color="white" size="5" face="Verdana"&gt;
+        &amp;nbsp;&amp;nbsp;Breaking News:India wins the 2026 T20 World Cup!&amp;nbsp;|&amp;nbsp;Virat kohli hits 85th
+        Century!
+        &amp;nbsp;|&amp;nbsp;Bumrah takes a Hat-trick!
+        &lt;/font&gt;
+        &lt;/marquee&gt;
+
+        &lt;br&gt;&lt;br&gt;
+
+        &lt;section&gt;
+        &lt;h2 align="center"&gt;
+        &lt;font color="#0038a8" face="Arial"&gt;VIRAT KOHLI&lt;/font&gt;
+        &lt;/h2&gt;
+
+        &lt;p align="center"&gt;
+        &lt;img src="E:\WDS-Lab\viratkolhli.jpg" width="200" height="200" border="5" alt="Virat Kohli"&gt;
+        &lt;/p&gt;
+
+        &lt;p align="center"&gt;
+        &lt;b&gt;"The King of Cricket"&lt;/b&gt;
+        &lt;br&gt;&lt;br&gt;
+        Virat Kohli is world renowed for his passion, fitness, and ability to chase down targets.
+        he is one of the greatest batsmen to ever play the game, holdinh numerous world records.
+        &lt;/p&gt;
+        &lt;/section&gt;
+        &lt;hr width="50%" size="2" color="#cccccc"&gt;
+
+        &lt;section&gt;
+        &lt;h2 align="center"&gt;
+        &lt;font color="#0038a8" face="Arial"&gt;MS DHONI&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;p align="center"&gt;
+        &lt;img src="E:\WDS-Lab\dhoni.webp" width="200" border="5" alt="MS Dhoni"&gt;
+        &lt;/p&gt;
+
+        &lt;p align="center"&gt;
+        &lt;b&gt;"The Captain Cool"&lt;/b&gt;
+        &lt;br&gt;&lt;br&gt;
+        Under MS Dhoni's leadership, India won the 2007 T20 World Cup, 2011 ODI World Cup, and 2013 Champions
+        Trophy.
+        He is famously known for his "Helicopter Shot" and lightning-fast stumping.
+        &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;hr width="50%" size="2" color="#cccccc"&gt;
+
+        &lt;section&gt;
+        &lt;h2 align="center"&gt;
+        &lt;font color="#0038a8" face="Arial"&gt;ROHIT SHARMA&lt;/font&gt;
+        &lt;/h2&gt;
+
+        &lt;p align="center"&gt;
+        &lt;img src="E:\WDS-Lab\rohithsharma.webp" width="200" height="200" border="5" alt="Rohit Sharma"&gt;
+        &lt;/p&gt;
+
+        &lt;p align="center"&gt;
+        &lt;b&gt;"The Hitman"&lt;/b&gt;
+        &lt;br&gt;&lt;br&gt;
+        Rohit Sharma is the only player to score three double-centuries in One Day Internationals.
+        His elegant batting style and captaincy led India to global success in 2024.
+        &lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;br&gt;
+
+        &lt;footer align="center"&gt;
+        &lt;hr size="5" color="#128807"&gt;
+        &lt;p&gt;
+        &lt;font size="2" face="Courier"&gt;&amp;copy; 2026 Cricket Fan Page - Made with Pure HTML&lt;/font&gt;
+        &lt;/p&gt;
+        &lt;/footer&gt;
+
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+
+        &lt;/header&gt;
+
+        &lt;hr size="5" color="#ff9933"&gt;
+        &lt;!-- Add your HTML content for Exercise 1 here --&gt;
+        &lt;p&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-exercise-2'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 2 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 2&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+        &lt;div class="code-area"&gt;
+
+        &lt;html&gt;
+
+        &lt;head&gt;
+        &lt;title&gt;Indian defence forces&lt;/title&gt;
+        &lt;link rel="icon" type="image/x-icon" href="E:\WDS-Lab\indian-army-.ico" height="100" width="50"&gt;
+        &lt;/head&gt;
+
+        &lt;body bgcolor="#f4f4f4" text="000000"&gt;
+        &lt;img src="E:\WDS-Lab\goverment of india.webc.webp" \indiannavy.webp\indianarmy.webp" alt="Indian Emblem"
+        width="100" height="150" align="center" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\header.png_files\defence.png_files\image004.png" align="center"&gt;
+        &lt;marquee behavior="alternate" scrollamount="10" direction="left"&gt;
+        &lt;font size="6" color="#ff9933" face="Arial"&gt;&lt;b&gt;Salute to the Indian Armed
+        Forces&lt;/b&gt;&lt;/font&gt;
+        &lt;font size="6" color="#000080" face="Arial"&gt;&lt;b&gt; - &lt;/b&gt;&lt;/font&gt;
+        &lt;font size="6" color="#138808" face="Arial"&gt;&lt;b&gt;Pride of the Nation&lt;/b&gt;&lt;/font&gt;
+        &lt;/marquee&gt;
+
+        &lt;hr width="80%" size="4" color="#000000"&gt;
+        &lt;p align="center"&gt;
+        &lt;img src="E:\WDS-Lab\indianarmy.webp" style="width:160px;height:160px;margin:20px;"&gt;
+        &lt;img src="E:\WDS-Lab\indian navy.png" style="width:160px;height:160px;margin:20px;"&gt;
+        &lt;img src="E:\WDS-Lab\air forces.webp" style="width:160px;height:160px;margin:20px;"&gt;
+        &lt;/p&gt;
+        &lt;hr width="80%" size="4" color="#000000"&gt;
+        &lt;section&gt;
+        &lt;p style="color:rgb(238, 18, 175); font-size:20; font-family:Arial"&gt;
+
+        The Indian Armed Forces are the military forces of the Republic of India. It consists of three profesional
+        uniformed services:the &lt;b&gt;&lt;i&gt;Indian Army&lt;/i&gt;,&lt;i&gt;Indian Navy&lt;/i&gt;&lt;/b&gt;,and
+        &lt;b&gt;&lt;i&gt;Indian Air
+        Forces&lt;/i&gt;&lt;/b&gt;.Additionally, the Indian Armed Forces are supported by the Indian Coast Guard and
+        paramillitary organizations.The President of India is the Supreme Commendar of the Indian Armed Forces.
+        &lt;/front&gt;
+        &lt;/p&gt;
+        &lt;h3&gt;
+        &lt;font color="#8b0000" face="Arial"&gt;The Three Main Branches:&lt;/font&gt;
+        &lt;/h3&gt;
+        &lt;ol type="1"&gt;
+        &lt;li&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;Indian Army&lt;/font&gt;
+        &lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;Indian Navy&lt;/font&gt;
+        &lt;/b&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;Indian Air Force&lt;/font&gt;
+        &lt;/b&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;/section&gt;
+        &lt;hr size="2" color="gray"&gt;
+        &lt;section&gt;
+        &lt;h2&gt;
+        &lt;font color="green" face="Arial"&gt;1. Indian Army&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;img src="E:\WDS-Lab\indianarmyimg.webp" alt="Indian Army Soldiers" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\india2.webp" alt="Indian Army Soldiers" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\india3.webp" alt="Indian Army Soldiers" width="400" height="250" border="2"&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;font size="3" face="Arial"&gt;&lt;/font&gt;
+        &lt;b&gt;
+        &lt;center&gt;Motto:
+        &lt;/b&gt; &lt;i&gt;"Service Before Self"&lt;/i&gt; (Seva Paramo Dharma)&lt;/center&gt;&lt;br&gt;&lt;br&gt;
+        The Indian Army is the land-based branch and the largest component of the Indian Armed Forces. The primary
+        mission of the Indian Army is to ensure national security and national unity, defending the nation from
+        external aggression and internal threats, and maintaining peace and security within its borders.&lt;br&gt;The
+        Ranks in the Indian Army are as follows:
+        &lt;/font&gt;
+        &lt;ol type="I"&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Chief of Defence Staff&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Field marshal&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;General&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Lieutenant General &lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Major General&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Bregadier&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Colonel&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Lieutenant Colonel&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Major&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Captain&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Lieutenant&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Second Lieutenant&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;/section&gt;
+        &lt;hr size="2" color="#cccccc"&gt;
+
+        &lt;section&gt;
+        &lt;h2&gt;
+        &lt;font color="navy" face="Arial"&gt;2. Indian Navy&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;img src="E:\WDS-Lab\indiannavy1.webp" alt="Indian Navy Ships" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\indiannavy2.webp" alt="Indian Navy Ships" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\indianavy3.webp" alt="Indian Navy Ships" width="400" height="250" border="2"&gt;
+        &lt;br&gt;
+        &lt;font size="3" face="Arial"&gt;
+        &lt;b&gt;Motto:&lt;/b&gt; &lt;i&gt;"May the Lord of the Water be auspicious unto us"&lt;/i&gt; (Sham No
+        Varunah)&lt;br&gt;&lt;br&gt;
+        The Indian Navy is the naval branch of the Indian Armed Forces. The primary objective of the navy is to
+        secure the nation's maritime borders. India also uses its navy to enhance its international relations
+        through joint exercises, port visits and humanitarian missions.
+        &lt;/font&gt;
+        &lt;/section&gt;
+
+        &lt;hr size="1" color="#cccccc"&gt;
+        &lt;section&gt;
+        &lt;h2&gt;
+        &lt;font color="#00bfff" face="Arial"&gt;3. Indian Air Force&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;img src="E:\WDS-Lab\airfoercejet1.webp" alt="Indian Air Force Jets" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\air forcesjet2.webp" alt="Indian Air Force Jets" width="400" height="250" border="2"&gt;
+        &lt;img src="E:\WDS-Lab\air forcejet3.webp" alt="Indian Air Force Jets" width="400" height="250" border="2"&gt;
+
+        &lt;br&gt;&lt;br&gt;
+        &lt;font size="3" face="Arial"&gt;
+        &lt;b&gt;Motto:&lt;/b&gt; &lt;i&gt;"Touch the sky with glory"&lt;/i&gt; (Nabha Sparsham
+        Deeptam)&lt;br&gt;&lt;br&gt;
+        The Indian Air Force is the air arm of the Indian Armed Forces. Its complement of personnel and aircraft
+        assets ranks as the fourth largest amongst the air forces of the world. Its primary mission is to secure
+        Indian airspace and to conduct aerial warfare during armed conflict.
+        &lt;/font&gt;
+        &lt;/section&gt;
+        &lt;hr size="2" color="gray"&gt;
+
+        &lt;section&gt;
+        &lt;h2&gt;
+        &lt;font color="#4b0082" face="Arial"&gt;Other Associated &amp; Paramilitary Forces&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;p&gt;
+        &lt;font size="3" face="Arial"&gt;Apart from the three core branches, India's defence mechanisms are supported
+        by various other forces:&lt;/font&gt;
+        &lt;/p&gt;
+        &lt;ul type="square"&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Indian Coast Guard (ICG)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Border Security Force (BSF)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Central Reserve Police Force (CRPF)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Indo-Tibetan Border Police (ITBP)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Sashastra Seema Bal (SSB)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;Assam Rifles&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+        &lt;font size="3" face="Arial"&gt;National Security Guard (NSG)&lt;/font&gt;
+        &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/section&gt;
+        &lt;hr size="2" color="gray"&gt;
+
+        &lt;section&gt;
+        &lt;h2&gt;
+        &lt;font color="#b22222" face="Arial"&gt;Key Defence Terminology&lt;/font&gt;
+        &lt;/h2&gt;
+        &lt;dl&gt;
+        &lt;dt&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;MoD&lt;/font&gt;
+        &lt;/b&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;font size="3" face="Arial"&gt;Ministry of Defence, the government department responsible for coordinating
+        and supervising all agencies and functions of the government relating directly to national security
+        and the Indian Armed Forces.&lt;/font&gt;
+        &lt;/dd&gt;
+        &lt;br&gt;
+        &lt;dt&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;CDS&lt;/font&gt;
+        &lt;/b&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;font size="3" face="Arial"&gt;Chief of Defence Staff, the highest-ranking military officer of the Indian
+        Armed Forces who acts as the principal military advisor to the Minister of Defence.&lt;/font&gt;
+        &lt;/dd&gt;
+        &lt;br&gt;
+        &lt;dt&gt;&lt;b&gt;
+        &lt;font size="4" face="Arial"&gt;DRDO&lt;/font&gt;
+        &lt;/b&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;font size="3" face="Arial"&gt;Defence Research and Development Organisation, an agency of the Republic of
+        India, charged with the military's research and development.&lt;/font&gt;
+        &lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;/section&gt;
+        &lt;br&gt;&lt;br&gt;
+        &lt;center&gt;
+        &lt;font size="2" color="gray" face="Arial"&gt;
+        &amp;copy; 2026 Indian Defence Forces Overview &lt;br&gt;
+        &lt;i&gt;Created for educational purposes.&lt;/i&gt;
+        &lt;/font&gt;
+        &lt;/center&gt;
+
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+        &lt;!-- Add your HTML content for Exercise 2 here --&gt;
+        &lt;p&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-exercise-3'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 3 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 3&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+        &lt;div class="code-area"&gt;
+
+        &lt;html&gt;
+
+        &lt;head&gt;
+        &lt;title&gt;Garden Fresh&lt;/title&gt;
+        &lt;style&gt;
+        table,
+        th,
+        td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        padding: 8px;
+        }
+
+        .center-image {
+        display: block;
+        margin: 0 auto;
+        }
+
+        .button-center {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+        }
+
+        #cart {
+        margin: 20px auto;
+        width: 50%;
+        border: 2px solid black;
+        padding: 10px;
+        }
+        &lt;/style&gt;
+
+        &lt;body bgcolor="lightblue"&gt;
+        &lt;img src="E:\WDS-Lab\header.png_files\vegitable.png_files\image003.png" alt="Description"
+        class="center-image"&gt;
+        &lt;/body&gt;
+        &lt;table align="center"&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+        &lt;td&gt;vegitable&lt;/td&gt;
+        &lt;td&gt;price&lt;/td&gt;
+        &lt;td&gt;add to cart&lt;/td&gt;
+        &lt;td&gt;vegitable&lt;/td&gt;
+        &lt;td&gt;price&lt;/td&gt;
+        &lt;td&gt;add to cart&lt;/td&gt;
+        &lt;td&gt;vegitable&lt;/td&gt;
+        &lt;td&gt;price&lt;/td&gt;
+        &lt;td&gt;add to cart&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\tomatoes.jpge" alt="tamato" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹35&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('tamato',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\freshspinach.webp" alt="Spinach" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹50&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Spinach',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\broccoli.webp" alt="Broccoli" width="150"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹70&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Broccoli',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+
+
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\newbrinjal.webp" alt="brinjal" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹40&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('brinjal', 40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\Cabbage.webp" alt="Cabbage" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹70&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Cabbage',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\cucumber.webp" alt="Cucumber" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹110&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Cucumber',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\patoto.webp" alt="potato" width="200" &lt;/td&gt;
+        &lt;td width="100"&gt;₹45&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('potato',45)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\ginger-root.webp" alt="Ginger" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹60&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Garlic',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\Pavakka.webp" alt="BitterGourd" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹110&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('BitterGourd',35)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\Onion.webp" alt="onion" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹40&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('onion',40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\ladiesfinger.jpg" alt="ladiesfinger" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹120&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('ladiesfinger',40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\peas.webp" alt="peas" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹40&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Peas',40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\carrots.webp" alt="carrot" width="200"&gt;&lt;/td&gt;
+        &lt;td&gt;₹55&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('carrot',55)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\Bell-peppers.webp" alt="Capsicum" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹120&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Capsicum',40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;img src="E:\WDS-Lab\beeteroot.webp" alt="Beetroot" width="200"&gt;&lt;/td&gt;
+        &lt;td width="100"&gt;₹120&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="addToCart('Beetroot',40)"&gt;Add to Cart&lt;/button&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;button type="submit" class="button-center" onclick="placeOrder()"&gt;ORDER NOW&lt;/button&gt;
+
+        &lt;div id="cart"&gt;
+        &lt;h3&gt;Your Cart&lt;/h3&gt;
+        &lt;ul id="cart-items"&gt;&lt;/ul&gt;
+        &lt;p&gt;&lt;strong&gt;Total: ₹&lt;span id="cart-total"&gt;0&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;script&gt;
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+        cart.push({ item, price });
+        total += price;
+        displayCart();
+        }
+
+        function displayCart() {
+        const cartItems = document.getElementById("cart-items");
+        cartItems.innerHTML = "";
+        cart.forEach(c =&gt; {
+        let li = document.createElement("li");
+        li.textContent = c.item + " - ₹" + c.price;
+        cartItems.appendChild(li);
+        });
+        document.getElementById("cart-total").textContent = total;
+        }
+
+        function placeOrder() {
+        if (cart.length === 0) {
+        alert("Your cart is empty!");
+        } else {
+        alert("Order placed successfully! Total: ₹" + total);
+        cart = [];
+        total = 0;
+        displayCart();
+        }
+        }
+        &lt;/script&gt;
+
+        &lt;/head&gt;
+
+        &lt;/html&gt;
+        &lt;!-- Add your HTML content for Exercise 3 here --&gt;
+        &lt;p&gt; &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-exercise-4'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 4 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 4&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+        &lt;div class="code-area"&gt;
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+        &lt;title&gt;Student Mark Card - Class X&lt;/title&gt;
+        &lt;style&gt;
+        body {
+        margin: 0;
+        padding: 30px 20px;
+        background-color: #f0f4f8;
+        font-family: 'Times New Roman', Times, serif;
+        min-height: 100vh;
+        }
+
+        .card {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border: 2px solid #003366;
+        }
+
+        .header h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        }
+
+        .header .subtitle {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: #c8d8f0;
+        letter-spacing: 0.5px;
+        }
+
+        .header-bottom {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header h2 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        color: #ffd700;
+        }
+
+        .header .exam-year {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: #c8d8f0;
+        }
+
+        .body {
+        padding: 24px 30px;
+        }
+
+        .student-info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        gap: 20px;
+        }
+
+        .student-details {
+        flex: 1;
+        }
+
+        table.info-table {
+        border-collapse: collapse;
+        font-size: 13px;
+        width: 100%;
+        }
+
+        table.info-table td {
+        padding: 7px 10px;
+        }
+
+        table.info-table td.label {
+        font-weight: bold;
+        color: #003366;
+        width: 40%;
+        }
+
+        table.info-table tr:nth-child(odd) {
+        background-color: #e8f0fe;
+        }
+
+        table.info-table tr:nth-child(even) {
+        background-color: #ffffff;
+        }
+
+        .photo-box {
+        text-align: center;
+        flex-shrink: 0;
+        }
+
+        .photo-wrapper {
+        border: 2px solid #003366;
+        padding: 4px;
+        background-color: #f5f5f5;
+        display: inline-block;
+        }
+
+        .photo-wrapper img {
+        display: block;
+        object-fit: cover;
+        }
+
+        .photo-label {
+        margin: 6px 0 0;
+        font-size: 11px;
+        color: #555;
+        font-style: italic;
+        }
+
+        table.marks-table {
+        border-collapse: collapse;
+        font-size: 13px;
+        width: 100%;
+        }
+
+        table.marks-table caption {
+        caption-side: top;
+        font-size: 14px;
+        font-weight: bold;
+        color: #003366;
+        padding: 8px 0 10px;
+        text-align: center;
+        letter-spacing: 0.5px;
+        }
+
+        table.marks-table th {
+        background-color: #003366;
+        color: #ffffff;
+        padding: 10px 8px;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+        vertical-align: middle;
+        }
+
+        table.marks-table td {
+        padding: 8px;
+        vertical-align: middle;
+        text-align: center;
+        }
+
+        table.marks-table tbody tr:nth-child(odd) {
+        background-color: #f7f9ff;
+        }
+
+        table.marks-table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+        }
+
+        .scholastic-cell {
+        background-color: #e8f4e8;
+        font-weight: bold;
+        color: #1a5c1a;
+        font-size: 12px;
+        }
+
+        .co-scholastic-cell {
+        background-color: #fff4e8;
+        font-weight: bold;
+        color: #7a3200;
+        font-size: 12px;
+        }
+
+        .grade-a {
+        color: #1a5c1a;
+        font-weight: bold;
+        }
+
+        .grade-b {
+        color: #7a5200;
+        font-weight: bold;
+        }
+
+        table.marks-table tfoot tr {
+        background-color: #dce8ff;
+        }
+
+        table.marks-table tfoot td {
+        padding: 10px 8px;
+        font-weight: bold;
+        font-size: 13px;
+        color: #003366;
+        }
+
+        .tfoot-total {
+        text-align: right;
+        }
+
+        .tfoot-marks {
+        color: #003366;
+        }
+
+        .tfoot-pct {
+        color: #1a5c1a;
+        }
+
+        .result-row {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        }
+
+        .result-panel {
+        flex: 1;
+        border: 2px solid #003366;
+        padding: 12px 16px;
+        background-color: #e8f4e8;
+        }
+
+        table.result-table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        table.result-table td {
+        padding: 4px;
+        font-size: 13px;
+        }
+
+        table.result-table td.r-label {
+        font-weight: bold;
+        color: #003366;
+        width: 40%;
+        }
+
+        .result-pass {
+        font-weight: bold;
+        font-size: 16px;
+        color: #1a5c1a;
+        }
+
+        .result-division {
+        font-weight: bold;
+        color: #7a3200;
+        }
+
+        .result-pct {
+        font-weight: bold;
+        }
+
+        .grade-panel {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 12px 16px;
+        background-color: #f9f9f9;
+        }
+
+        .grade-panel h4 {
+        margin: 0 0 6px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #003366;
+        }
+
+        table.grade-scale-table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        table.grade-scale-table td {
+        font-size: 11px;
+        padding: 2px 4px;
+        }
+
+        table.grade-scale-table td.g-code {
+        font-weight: bold;
+        color: #1a5c1a;
+        width: 28px;
+        }
+
+        table.grade-scale-table td.g-range {
+        color: #555;
+        width: 50px;
+        }
+
+        table.grade-scale-table td.g-desc {
+        color: #333;
+        }
+
+        .signatures {
+        margin-top: 32px;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 8px;
+        }
+
+        .sig-box {
+        text-align: center;
+        min-width: 160px;
+        }
+
+        .sig-line {
+        border-bottom: 1px solid #555;
+        margin-bottom: 6px;
+        height: 36px;
+        }
+
+        .sig-label {
+        margin: 0;
+        font-size: 12px;
+        font-weight: bold;
+        color: #003366;
+        }
+
+        .note {
+        margin-top: 20px;
+        padding: 10px 14px;
+        background-color: #fffde7;
+        border: 1px solid #f0c040;
+        font-size: 11px;
+        color: #555;
+        line-height: 1.6;
+        }
+
+        .footer {
+        background-color: #003366;
+        color: #c8d8f0;
+        text-align: center;
+        padding: 10px 20px;
+        font-size: 11px;
+        }
+
+        .footer a {
+        color: #ffd700;
+        text-decoration: none;
+        }
+        &lt;/style&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;div class="card"&gt;
+        &lt;div class="header"&gt;
+        &lt;div class="header-top"&gt;
+        &lt;div&gt;
+        &lt;img src="E:\WDS-Lab\Doc1_files\image003.png" 313 alt="NITK Logo" width="900" height="80" /&gt;
+
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="header-bottom"&gt;
+        &lt;h2&gt;SECONDARY SCHOOL CERTIFICATE — CLASS X&lt;/h2&gt;
+        &lt;p class="exam-year"&gt;Annual Examination — Academic Year 2024-25&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="body"&gt;
+
+        &lt;div class="student-info-row"&gt;
+        &lt;div class="student-details"&gt;
+        &lt;table class="info-table" border="1" cellpadding="6" cellspacing="0" 330 width="100%"
+        summary="Student personal and academic details"&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Student Name&lt;/td&gt;
+        &lt;td&gt;&lt;strong&gt;Anuradha&lt;/strong&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Roll Number&lt;/td&gt;
+        &lt;td&gt;2024-10-0547&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Date of Birth&lt;/td&gt;
+        &lt;td&gt;15-August-2009&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;school&lt;/td&gt;
+        &lt;td&gt;NITK English Medium School, Surathkal, Karnataka&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Board&lt;/td&gt;
+        &lt;td&gt;CBSE, New Delhi&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Academic Year&lt;/td&gt;
+        &lt;td&gt;2024-25&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="label"&gt;Class&lt;/td&gt;
+        &lt;td&gt;X (10th Standard)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class="photo-box"&gt;
+        &lt;div class="photo-wrapper"&gt;
+        &lt;!-- Replace src with an actual passport photo --&gt;
+        &lt;img src="E:\WDS-Lab\Anuradha.jpg" 347 alt="Anuradha - Candidate Photo" 348 width="130"
+        height="200" /&gt;
+        &lt;/div&gt;
+        &lt;p class="photo-label"&gt;Anuradha&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- MARKS TABLE --&gt;
+        &lt;table class="marks-table" border="1" cellpadding="8" cellspacing="0" 356 width="100%" align="center" 357
+        summary="Marks obtained by the student in Class X Annual Examination 2024-25"&gt;
+        &lt;caption&gt;STATEMENT OF MARKS — ANNUAL EXAMINATION 2024-25&lt;/caption&gt;
+        &lt;colgroup&gt;
+        &lt;col span="1" style="width:5%;" /&gt;
+        &lt;col span="1" style="width:20%;" /&gt;
+        &lt;col span="1" style="width:15%;" /&gt;
+        &lt;col span="1" style="width:15%;" /&gt;
+        &lt;col span="1" style="width:15%;" /&gt;
+        &lt;col span="1" style="width:10%;" /&gt;
+        &lt;col span="1" style="width:20%;" /&gt;
+        &lt;/colgroup&gt;
+        &lt;thead&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;S.No&lt;/th&gt;
+        &lt;th scope="col"&gt;Subject&lt;/th&gt;
+        &lt;th scope="col"&gt;Area&lt;/th&gt;
+        &lt;th scope="col"&gt;Max. Marks&lt;/th&gt;
+        &lt;th scope="col"&gt;Marks Obtained&lt;/th&gt;
+        &lt;th scope="col"&gt;Grade&lt;/th&gt;
+        &lt;th scope="col"&gt;Remarks&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+        &lt;!-- Row 1: rowspan=7 for Scholastic Area --&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;1&lt;/td&gt;
+        &lt;td align="left"&gt;English&lt;/td&gt;
+        &lt;td rowspan="7" align="center" valign="middle" class="scholastic-cell"&gt;Scholastic&lt;br
+        /&gt;Area&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;88&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A1&lt;/td&gt;
+        &lt;td align="center"&gt;Excellent&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;2&lt;/td&gt;
+        &lt;td align="left"&gt;Hindi&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;76&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-b"&gt;B1&lt;/td&gt;
+        &lt;td align="center"&gt;Good&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;3&lt;/td&gt;
+        &lt;td align="left"&gt;Mathematics&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;92&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A1&lt;/td&gt;
+        &lt;td align="center"&gt;Outstanding&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;4&lt;/td&gt;
+        &lt;td align="left"&gt;Science&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;84&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A2&lt;/td&gt;
+        &lt;td align="center"&gt;Very Good&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;5&lt;/td&gt;
+        &lt;td align="left"&gt;Social Science&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;79&lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td align="center" class="grade-b"&gt;B1&lt;/td&gt;
+        &lt;td align="center"&gt;Good&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;6&lt;/td&gt;
+        &lt;td align="left"&gt;Computer Science&lt;/td&gt;
+        &lt;td align="center"&gt;100 &lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;95&lt;/strong&gt; &lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A1&lt;/td&gt;
+        &lt;td align="center"&gt;Outstanding&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;7&lt;/td&gt;
+        &lt;td align="left"&gt;Sanskrit&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt; 71&lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td align="center" class="grade-b"&gt;B2&lt;/td&gt;
+        &lt;td align="center"&gt;Satisfactory&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;8&lt;/td&gt;
+        &lt;td align="left"&gt;Physical Education&lt;/td&gt;
+        &lt;td align="center" valign="middle" class="co-scholastic-cell"&gt;Co-Scholastic&lt;br /&gt;Area&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt; &lt;strong&gt; 88&lt;/strong&gt;
+        &lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A1&lt;/td&gt;
+        &lt;td align="center"&gt;Excellent&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;9&lt;/td&gt;
+        &lt;td align="left"&gt;Art &amp;amp; Craft&lt;/td&gt;
+        &lt;td align="center" valign="middle" class="co-scholastic-cell"&gt;Co-Scholastic&lt;br /&gt;Area&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;90&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A1&lt;/td&gt;
+        &lt;td align="center"&gt;Excellent&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td align="center"&gt;10&lt;/td&gt;
+        &lt;td align="left"&gt;Music&lt;/td&gt;
+        &lt;td align="center" valign="middle" class="co-scholastic-cell"&gt;Co-Scholastic&lt;br /&gt;Area&lt;/td&gt;
+        &lt;td align="center"&gt;100&lt;/td&gt;
+        &lt;td align="center"&gt;&lt;strong&gt;82&lt;/strong&gt;&lt;/td&gt;
+        &lt;td align="center" class="grade-a"&gt;A2&lt;/td&gt;
+        &lt;td align="center"&gt;Very Good&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;tfoot&gt;
+        &lt;tr&gt;
+        &lt;td colspan="3" align="right" class="tfoot-total"&gt;GRAND TOTAL&lt;/td&gt;
+        &lt;td align="center" class="tfoot-marks"&gt;1000&lt;/td&gt;
+        &lt;td align="center" class="tfoot-marks"&gt;
+        &lt;/td&gt;
+
+        &lt;td colspan="2" align="center" class="tfoot-pct"&gt;Percentage: 84.5%&lt;/td&gt;
+
+        &lt;/tr&gt;
+
+        &lt;/tfoot&gt;
+
+        &lt;/table&gt;
+
+        &lt;!-- Result + Grade Scale --&gt;
+
+        &lt;div class="result-row"&gt;
+        &lt;div class="result-panel"&gt;
+        &lt;table class="result-table " border="0" cellpadding="4" cellspacing="0" 487 width="100%"
+        summary="Result summary"&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+        &lt;td class="r-label"&gt;Result&lt;/td&gt;
+        &lt;td class="result-pass"&gt;&amp;#10004; PASS&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="r-label"&gt;Total Marks&lt;/td&gt;
+        &lt;td&gt;845 / 1000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="r-label"&gt;Percentage&lt;/td&gt;
+        &lt;td class="result-pct"&gt;84.5%&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="r-label"&gt;Division&lt;/td&gt;
+        &lt;td class="result-division"&gt;First Division&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class="grade-panel"&gt;
+        &lt;h4&gt;GRADE SCALE:&lt;/h4&gt;
+        &lt;table class="grade-scale-table" border="0" cellpadding="2" cellspacing="0" 512 width="100%"
+        summary="Grade scale reference"&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+        &lt;td class="g-code"&gt;A1&lt;/td&gt;
+        &lt;td class="g-range"&gt;91–100&lt;/td&gt;
+        &lt;td class="g-desc"&gt;Outstanding&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="g-code"&gt;A2&lt;/td&gt;
+        &lt;td class="g-range"&gt;81–90&lt;/td&gt;
+        &lt;td class="g-desc"&gt;Excellent&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="g-code"&gt;B1&lt;/td&gt;
+        &lt;td class="g-range"&gt;71–80&lt;/td&gt;
+        &lt;td class="g-desc"&gt;Very Good&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td class="g-code"&gt;B2&lt;/td&gt;
+        &lt;td class="g-range"&gt;61–70&lt;/td&gt;
+        &lt;td class="g-desc"&gt;Good&lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+        &lt;td class="g-code"&gt;C1&lt;/td&gt;
+        &lt;td class="g-range"&gt;51–60&lt;/td&gt;
+        &lt;td class="g-desc"&gt;Average&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Signatures --&gt;
+        &lt;div class="signatures"&gt;
+        &lt;div class="sig-box"&gt;
+        &lt;div class="sig-line"&gt;
+        &lt;/div&gt;
+        &lt;p class="sig-label"&gt;Class Teacher&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="sig-box"&gt;
+        &lt;div class="sig-line"&gt;
+        &lt;/div&gt;
+        &lt;p class="sig-label"&gt;Examination Controller&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="sig-box"&gt;
+        &lt;div class="sig-line"&gt;&lt;/div&gt;
+        &lt;p class="sig-label"&gt;Principal&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Note --&gt;
+        &lt;div class="note"&gt;
+        &lt;strong&gt;Note:&lt;/strong&gt;
+        This is a computer-generated mark card. Any discrepancy must be
+        reported within 15 days of issuance. Results are subject to verification by the Board.
+        Marks are as per CBSE grading norms for Class X Annual Examination 2024-25.
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="footer"&gt;
+        NITK English Medium School, Surathkal, Karnataka | Affiliated to CBSE, New Delhi | Affiliation No: 1234567
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+
+        &lt;!-- Add your HTML content for Exercise 4 here --&gt;
+        &lt;p&gt; &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-exercise-5'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 5 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 5&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+
+        &lt;div class="code-area"&gt;
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Job Application Biodata Form&lt;/title&gt;
+        &lt;style&gt;
+        /* CSS resets */
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+        background-color: #f0f4f8;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem;
+        }
+
+        .container {
+        background: #ffffff;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        position: relative;
+        }
+
+        @keyframes slideInGlow {
+        0% {
+        transform: translateY(-20px);
+        opacity: 0;
+        text-shadow: 0 0 0 rgba(79, 70, 229, 0);
+        }
+
+        50% {
+        text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+        }
+
+        100% {
+        transform: translateY(0);
+        opacity: 1;
+        text-shadow: 0 0 0 rgba(79, 70, 229, 0);
+        }
+        }
+
+        @keyframes pulseGlow {
+        0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+        }
+
+        50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 10px 5px rgba(79, 70, 229, 0.3);
+        }
+
+        100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+        }
+        }
+
+        h1 {
+        color: #4f46e5;
+        text-align: center;
+        margin-bottom: 2rem;
+        animation: slideInGlow 1.5s ease-out forwards;
+        }
+
+        /* Form elements grid */
+        .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        }
+
+        .full-width {
+        grid-column: span 2;
+        }
+
+        .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        }
+
+        label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #4b5563;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="file"],
+        select,
+        textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+        outline: none;
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* HTML5 Valid/Invalid States Styles (optional but good for UX) */
+        input:not(:placeholder-shown):valid,
+        textarea:not(:placeholder-shown):valid {
+        border-color: #10b981;
+        }
+
+        input:not(:placeholder-shown):invalid,
+        textarea:not(:placeholder-shown):invalid {
+        border-color: #ef4444;
+        }
+
+        /* Radio and Checkbox */
+        .options-group {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        height: 100%;
+        }
+
+        .radio-wrapper,
+        .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        }
+
+        /* Submit Button */
+        button[type="submit"] {
+        grid-column: span 2;
+        background-color: #4f46e5;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: background-color 0.3s;
+        animation: pulseGlow 2.5s infinite;
+        }
+
+        button[type="submit"]:hover {
+        background-color: #4338ca;
+        }
+
+        /* Pure CSS Success Message Trick */
+        .success-box {
+        display: none;
+        background-color: #d1fae5;
+        color: #065f46;
+        padding: 3rem;
+        text-align: center;
+        border-radius: 12px;
+        border: 2px solid #34d399;
+        }
+
+        .success-box h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        }
+
+        /* When the URL has #submit_success */
+        #submit_success:target {
+        display: block;
+        }
+
+        /* Hide the form when success is shown */
+        #submit_success:target+#biodata-form {
+        display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+        .form-grid {
+        grid-template-columns: 1fr;
+        }
+
+        .full-width {
+        grid-column: 1;
+        }
+
+        button[type="submit"] {
+        grid-column: 1;
+        }
+        }
+        &lt;/style&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;div class="container"&gt;
+        &lt;!-- Target div for purely CSS-based form submission response --&gt;
+        &lt;div id="submit_success" class="success-box"&gt;
+        &lt;h2&gt;Application Submitted successfully.&lt;/h2&gt;
+        &lt;p&gt;Thank you for submitting your biodata. We will get back to you soon.&lt;/p&gt;
+        &lt;br&gt;
+        &lt;a href="biodata.html" style="color: #065f46; font-weight: bold; padding-top: 10px;"&gt;Fill another
+        application&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;form id="biodata-form" action="#submit_success" method="get"&gt;
+        &lt;h1&gt;Biodata Application Form&lt;/h1&gt;
+        &lt;div class="form-grid"&gt;
+        &lt;!-- Textbox with minlength/maxlength/required --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="fullname"&gt;Full Name *&lt;/label&gt;
+        &lt;input type="text" id="fullname" name="fullname" placeholder="John Doe" required minlength="3"
+        maxlength="50"&gt;
+        &lt;/div&gt;
+        &lt;!-- Email with type=email --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;Email Address *&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="john@example.com" required&gt;
+        &lt;/div&gt;
+        &lt;!-- Date with type=date --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="dob"&gt;Date of Birth *&lt;/label&gt;
+        &lt;input type="date" id="dob" name="dob" required max="2008-01-01"
+        title="Must be at least 18 years old"&gt;
+        &lt;/div&gt;
+        &lt;!-- Number with min and max --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="age"&gt;Age *&lt;/label&gt;
+        &lt;input type="number" id="age" name="age" required min="18" max="65" placeholder="18-65"&gt;
+        &lt;/div&gt;
+        &lt;!-- Phone with Pattern Match --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="phone"&gt;Phone Number *&lt;/label&gt;
+        &lt;input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10 Digits"
+        title="Please enter a 214 10-digit phone number"&gt;
+        &lt;/div&gt;
+        &lt;!-- URL --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="linkedin"&gt;LinkedIn Profile URL&lt;/label&gt;
+        &lt;input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..."&gt;
+        &lt;/div&gt;
+        &lt;!-- Option Buttons (Radio) --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label&gt;Gender *&lt;/label&gt;
+        &lt;div class="options-group"&gt;
+        &lt;label class="radio-wrapper"&gt;&lt;input type="radio" name="gender" value="male" required&gt;
+        Male&lt;/label&gt;
+        &lt;label class="radio-wrapper"&gt;&lt;input type="radio" name="gender" value="female" required&gt;
+        Female&lt;/label&gt;
+        &lt;label class="radio-wrapper"&gt;&lt;input type="radio" name="gender" value="other" required&gt;
+        Other&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Dropdown Listbox --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="education"&gt;Highest Qualification *&lt;/label&gt;
+        &lt;select id="education" name="education" required&gt;
+        &lt;option value="" disabled selected&gt;Select your degree&lt;/option&gt;
+        &lt;option value="highschool"&gt;High School&lt;/option&gt;
+        &lt;option value="bachelor"&gt;Bachelor's Degree&lt;/option&gt;
+        &lt;option value="master"&gt;Master's Degree&lt;/option&gt;
+        &lt;option value="phd"&gt;Ph.D.&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;!-- Multiple Listbox --&gt;
+        &lt;div class="form-group full-width"&gt;
+        &lt;label for="skills"&gt;Key Skills (Hold Ctrl/Cmd to select multiple) *&lt;/label&gt;
+        &lt;select id="skills" name="skills" multiple required size="4"&gt;
+        &lt;option value="html"&gt;HTML5&lt;/option&gt;
+        &lt;option value="css"&gt;CSS3&lt;/option&gt;
+        &lt;option value="js"&gt;JavaScript&lt;/option&gt;
+        &lt;option value="python"&gt;Python&lt;/option&gt;
+        &lt;option value="java"&gt;Java&lt;/option&gt;
+        &lt;option value="cpp"&gt;C++&lt;/option&gt;
+        &lt;option value="sql"&gt;SQL Database&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;/div&gt;
+        &lt;!-- Textarea --&gt;
+        &lt;div class="form-group full-width"&gt;
+        &lt;label for="address"&gt;Residential Address *&lt;/label&gt;
+        &lt;textarea id="address" name="address" rows="3" required minlength="10" maxlength="200"
+        placeholder="Full street 259 address..."&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;!-- File Upload --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label for="resume"&gt;Upload Resume (PDF/DOC) *&lt;/label&gt;
+        &lt;input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required&gt;
+        &lt;/div&gt;
+        &lt;!-- Checkbox --&gt;
+        &lt;div class="form-group"&gt;
+        &lt;label&gt;Declaration *&lt;/label&gt;
+        &lt;div class="options-group"&gt;
+        &lt;label class="checkbox-wrapper"&gt;
+        &lt;input type="checkbox" name="declaration" required&gt;
+        I verify that the information is accurate.
+        &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- Submit Button --&gt;
+        &lt;button type="submit"&gt;Submit Application&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;/form&gt;
+        &lt;/div&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+        &lt;!-- Add your HTML content for Exercise 5 here --&gt;
+        &lt;p&gt;&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-exercise-6'>&lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Exercise 6 - Web Development Skills&lt;/title&gt;
+        &lt;link rel="stylesheet" href="style.css"&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;nav&gt;
+        &lt;a href="about.html"&gt;About&lt;/a&gt;
+        &lt;a href="resources.html"&gt;Resources&lt;/a&gt;
+        &lt;/nav&gt;
+
+        &lt;main&gt;
+        &lt;div class="page-container"&gt;
+        &lt;h2&gt;Exercise 6&lt;/h2&gt;
+
+        &lt;!-- USER CODE AREA: You can add, edit, or modify your code below --&gt;
+        &lt;div class="code-area"&gt;
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Mangalore: The Coastal Cradle&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;frameset rows="70, *, 45" frameborder="0" framespacing="0"&gt;
+        &lt;frame src="headerr.html" name="header" scrolling="no" noresize&gt;
+        &lt;frame src="contentt.html" name="main"&gt;
+        &lt;frame src="foooter.html" name="footer" scrolling="no" noresize&gt;
+        &lt;noframes&gt;
+
+        &lt;body&gt;
+        Your browser does not support frames.
+        &lt;/body&gt;
+        &lt;/noframes&gt;
+        &lt;/frameset&gt;
+
+        &lt;/html&gt;
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="en"&gt;
+
+        &lt;head&gt;
+        &lt;style&gt;
+        :root {
+        --primary: #3498db;
+        --secondary: #2c3e50;
+        }
+
+        body {
+        margin: 0;
+        font-family: sans-serif;
+        background: rgba(255, 255, 255, 0.9);
+        }
+
+        .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background: white;
+        }
+
+        .header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        }
+
+        .header-logo img {
+        width: 43px;
+        height: 43px;
+        border-radius: 12px;
+        }
+
+        .header-text h1 {
+        font-size: 22px;
+        margin: 0;
+        font-weight: 700;
+        }
+
+        .header-text span {
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--primary);
+        font-weight: 600;
+        }
+
+        .nav-menu {
+        display: flex;
+        gap: 30px;
+        }
+
+        .nav-menu a {
+        text-decoration: none;
+        color: var(--secondary);
+        font-weight: 500;
+        font-size: 15px;
+        }
+
+        .nav-menu a:hover {
+        color: var(--primary);
+        }
+        &lt;/style&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+        &lt;header class="header-container"&gt;
+        &lt;div class="header-left"&gt;
+        &lt;div class="header-logo"&gt;
+        &lt;img src="C:\Users\vinay\Downloads\manglorelogo.jpg" alt="logo" /&gt;
+        &lt;/div&gt;
+        &lt;div class="header-text"&gt;
+        &lt;h1&gt;Mangaluru&lt;/h1&gt;
+        &lt;span&gt;The Coastal Cradle&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;nav class="nav-menu"&gt;
+        &lt;a href="contentt.html#home"&gt;Home&lt;/a&gt;
+        &lt;a href="contentt.html#places"&gt;Attraction&lt;/a&gt;
+        &lt;a href="contentt.html#contact"&gt;Contact&lt;/a&gt;
+        &lt;/nav&gt;
+        &lt;/header&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+        &lt;!-- Add your HTML content for Exercise 6 here --&gt;
+        &lt;iframe name="output_frame" class="output-frame"
+        style="width: 100%; height: 500px; border: 2px solid var(--btn-color); margin-top: 20px; border-radius: 8px;
+        background: white;"&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
+        &lt;!-- END USER CODE AREA --&gt;
+
+        &lt;div style="text-align: center;"&gt;
+        &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Home&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/main&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;</template>
+    <template id='code-project'>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Kerala Traditional Foods - Mini Project&lt;/title&gt;
+    &lt;style&gt;
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&amp;family=Playfair+Display:ital,wght@0,600;1,600&amp;display=swap');
+
+        :root {
+            --blush: #ffe4e1;
+            --maroon: #800000;
+            --gold: #d4af37;
+            --dark-green: #2e4a2e;
+            --light-cream: #fffdf9;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--blush);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            background-color: var(--maroon);
+            color: var(--gold);
+            padding: 12px 0;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .marquee-content {
+            animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(255,228,225,0.85), rgba(255,228,225,0.95)), url('https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&amp;fit=crop&amp;w=1920&amp;q=80') center/cover;
+            border-bottom: 6px solid var(--gold);
+            position: relative;
+        }
+
+        .animated-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: var(--maroon);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            margin: 0;
+            animation: popIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--dark-green);
+            margin-top: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            animation: fadeIn 1.5s ease-in 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Grid */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .food-card {
+            background: var(--light-cream);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 50px rgba(128, 0, 0, 0.15);
+            border-color: var(--gold);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .food-card:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .card-content {
+            padding: 30px 25px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to top, #fffdf9, #ffffff);
+        }
+
+        .card-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 2rem;
+            margin: 0 0 15px 0;
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn-animated {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: var(--dark-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 8px 15px rgba(46, 74, 46, 0.2);
+            align-self: center;
+        }
+
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background-color: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .btn-animated:hover::before {
+            width: 100%;
+        }
+        
+        .btn-animated:hover {
+            color: var(--maroon);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(46, 74, 46, 0.3);
+        }
+
+        /* Food Modal Styling */
+        .food-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .food-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .food-modal-content {
+            background-color: var(--light-cream);
+            border-radius: 25px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 2px solid var(--gold);
+        }
+
+        .food-modal.show .food-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-image-col {
+            flex: 1;
+            min-width: 45%;
+        }
+
+        .modal-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-text-col {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--maroon);
+            border: 2px solid var(--maroon);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--maroon);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .modal-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .food-modal-content {
+                flex-direction: column;
+            }
+            .modal-image-col {
+                height: 250px;
+                min-width: 100%;
+            }
+            .animated-title {
+                font-size: 3.2rem;
+            }
+        }
+
+        /* Floating Back Button */
+        .back-btn-container {
+            text-align: center;
+            margin: 80px 0 40px 0;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 16px 45px;
+            background: var(--maroon);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(128,0,0,0.25);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(128,0,0,0.35);
+            background: var(--gold);
+            color: var(--maroon);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer-heart {
+            color: var(--gold);
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes beat {
+            to { transform: scale(1.4); }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="marquee-container"&gt;
+        &lt;div class="marquee-content"&gt;
+            ✦ Welcome to the flavorful world of Kerala! Experience the rich culinary heritage of God's Own Country. Spices, Coconuts, and Tradition in every bite! ✦
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;header&gt;
+        &lt;h1 class="animated-title"&gt;Kerala Traditional Foods&lt;/h1&gt;
+        &lt;p class="subtitle"&gt;A Journey Through the Flavors of God's Own Country&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;div class="container"&gt;
+        &lt;div class="food-grid"&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="E:\WDS-Lab\Kerala Traditional Foods_files\appam_with_stew_1778772251094.png" alt="Appam with Stew" onerror="this.src='https://images.unsplash.com/photo-1626200419189-3b58be1461f0?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Appam with Stew&lt;/h3&gt;
+                    &lt;p&gt;A soft and fluffy pancake made from fermented rice batter, served with a creamy coconut-based stew.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Appam with Stew', 'Appam with Stew is arguably one of the most famous and beloved traditional dishes in Kerala. Appam is a type of pancake made from fermented rice batter and coconut milk. The edges are delightfully crisp, while the center remains soft, fluffy, and slightly sweet.&lt;br&gt;&lt;br&gt;It is almost always paired with Ishtu or Stew, which can be made with vegetables, chicken, or mutton. The vegetable stew is a creamy, aromatic curry made with potatoes, carrots, green peas, and beans, all gently simmered in a rich coconut milk base.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="images/puttu_kadala_1778772450998.png" alt="Puttu and Kadala" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Puttu and Kadala&lt;/h3&gt;
+                    &lt;p&gt;Steamed cylinders of ground rice layered with coconut, typically served with a spicy black chickpea curry.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Puttu and Kadala', 'Puttu is an iconic breakfast dish of Kerala, consisting of steamed cylinders of ground rice layered with fresh grated coconut. It\'s often made in a special cylindrical steamer known as a \'puttu kutti\'.&lt;br&gt;&lt;br&gt;The classic accompaniment to puttu is Kadala Curry, a spicy and robust dish made with black chickpeas, roasted coconut gravy, and aromatic Kerala spices. The contrast between the soft, mild puttu and the fiery, flavorful curry makes it an irresistible combination.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="images/karimeen_pollichathu_1778772700086.png" alt="Karimeen Pollichathu" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Karimeen Pollichathu&lt;/h3&gt;
+                    &lt;p&gt;Pearl spot fish marinated in spices, wrapped in banana leaves, and pan-fried to perfection.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Karimeen Pollichathu', 'Karimeen, or Pearl Spot fish, is the state fish of Kerala and a staple of the backwaters. In Karimeen Pollichathu, the fish is marinated in a vibrant mixture of lemon juice, red chilies, turmeric, and other local spices.&lt;br&gt;&lt;br&gt;It is then wrapped snugly in fresh banana leaves and pan-roasted or grilled. The banana leaf imparts a unique, earthy aroma to the fish, while keeping the flesh incredibly moist and flavorful. This is a must-try dish for seafood lovers.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="images/palada_payasam.png" alt="Palada Payasam" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c8e9e9cb?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Palada Payasam&lt;/h3&gt;
+                    &lt;p&gt;A sweet and rich dessert made with rice flakes, milk, and sugar, flavored with cardamom.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Palada Payasam', 'A traditional Kerala feast (Sadya) is never complete without a serving of Palada Payasam. It is a sweet, rich, and creamy dessert that holds a special place in Kerala cuisine, especially during festivals like Onam.&lt;br&gt;&lt;br&gt;It is made by simmering Ada (rice flakes) in a sweet reduction of milk and sugar until it reaches a beautiful pinkish hue. The dessert is subtly flavored with cardamom and generously garnished with ghee-roasted cashews and raisins.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="images/kerala_beef_fry_1778773464575.png" alt="Kerala Beef Fry" onerror="this.src='https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Kerala Beef Fry&lt;/h3&gt;
+                    &lt;p&gt;Tender chunks of beef slow-roasted with aromatic spices, coconut slices, and curry leaves.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Kerala Beef Fry', 'Kerala Beef Fry, often called \'Beef Ularthiyathu\', is a legendary dish characterized by its dark, caramelized appearance and explosive flavors. It consists of tender chunks of beef that are slow-roasted over low heat.&lt;br&gt;&lt;br&gt;The magic lies in the generous use of coconut oil, toasted coconut slices (thenga kothu), fresh curry leaves, and a potent blend of spices like black pepper, fennel, and coriander. It is most commonly enjoyed with flaky Kerala Parotta.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Malabar Biriyani" onerror="this.src='https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Malabar Biriyani&lt;/h3&gt;
+                    &lt;p&gt;A flavorful and fragrant biriyani made with short-grain kaima rice, meat, and traditional spices.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Malabar Biriyani', 'Originating from the Malabar region of Kerala, this Biriyani is distinct from its North Indian counterparts. It uses a special, highly fragrant short-grain rice called \'Khaima\' or \'Jeerakasala\' instead of Basmati.&lt;br&gt;&lt;br&gt;The meat (chicken, mutton, or fish) is cooked separately in a rich masala, and then layered with the semi-cooked rice. The pot is sealed to trap the steam (\'dum\' cooking), allowing the aromatic flavors of ghee, fried onions, cashews, and spices to meld beautifully.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="images/erissery_1778774768900.png" alt="Erissery" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Erissery&lt;/h3&gt;
+                    &lt;p&gt;A traditional curry made with pumpkin, cowpeas, and a roasted coconut paste.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Erissery', 'Erissery is a quintessential Kerala dish, widely prepared during festivals like Onam and Vishu. It features a harmonious blend of mildly sweet vegetables like pumpkin or plantain with legumes like cowpeas.&lt;br&gt;&lt;br&gt;The dish is elevated by two distinct coconut additions: a ground paste of coconut, cumin, and garlic cooked with the vegetables, and a final tempering of grated coconut roasted in coconut oil until deep golden brown, adding an irresistible crunch and nutty aroma.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Avial" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Avial&lt;/h3&gt;
+                    &lt;p&gt;A thick mixture of various vegetables and coconut, seasoned with coconut oil and curry leaves.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Avial', 'Avial is a highly nutritious and vibrant medley of locally available vegetables like yam, drumsticks, carrots, beans, and ash gourd. According to legend, it was invented by Bhima of the Pandavas during their exile.&lt;br&gt;&lt;br&gt;The vegetables are cooked in minimal water and combined with a coarse paste of grated coconut, cumin, and green chilies. It is given a slight tang with yogurt or raw mango, and finished with a generous drizzle of fresh coconut oil and aromatic curry leaves.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="E:/WDS-Lab/pazham_poori.jpg" alt="Pazham Pori" onerror="this.src='https://images.unsplash.com/photo-1603569283847-aa295f0d016a?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Pazham Pori&lt;/h3&gt;
+                    &lt;p&gt;Sweet ripe plantains coated in a seasoned flour batter and deep-fried to a golden crisp.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Pazham Pori', 'Pazham Pori, also known as Ethakka Appam, is the ultimate tea-time snack in Kerala. It perfectly balances the natural sweetness of ripe Nendran plantains with a crispy, savory exterior.&lt;br&gt;&lt;br&gt;Thick slices of the ripe plantain are dipped in a batter made of all-purpose flour, a pinch of turmeric for that golden color, and sugar, before being deep-fried in hot coconut oil. The result is a snack that is crispy on the outside and warm, sweet, and melting on the inside.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="food-card"&gt;
+                &lt;div class="card-img-wrapper"&gt;
+                    &lt;img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kerala Parotta" onerror="this.src='https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&amp;fit=crop&amp;w=800&amp;q=80'"&gt;
+                &lt;/div&gt;
+                &lt;div class="card-content"&gt;
+                    &lt;h3&gt;Kerala Parotta&lt;/h3&gt;
+                    &lt;p&gt;A flaky, layered flatbread made from maida, popular across the state for its soft and crispy texture.&lt;/p&gt;
+                    &lt;button class="btn-animated" onclick="openFoodModal('Kerala Parotta', 'Kerala Parotta, or simply \'Porotta\', is a layered, flaky flatbread that has gained immense popularity across South India. Unlike North Indian parathas, it is made from Maida (refined wheat flour).&lt;br&gt;&lt;br&gt;The dough is kneaded to be highly elastic, then stretched paper-thin, pleated, and rolled into a spiral before being pan-fried with generous amounts of oil or ghee. The finished parotta is crushed with the hands to separate its many crisp, tender layers, making it the perfect vehicle for soaking up rich, spicy curries.', this.parentElement.previousElementSibling.querySelector('img').src)"&gt;View Details&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="back-btn-container"&gt;
+            &lt;a href="basic_web_designing_skills.html" class="btn-back"&gt;← Back to Course Dashboard&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Food Detail Modal --&gt;
+    &lt;div id="foodModal" class="food-modal"&gt;
+        &lt;div class="food-modal-content"&gt;
+            &lt;div class="modal-close" onclick="closeFoodModal()"&gt;&amp;times;&lt;/div&gt;
+            &lt;div class="modal-image-col"&gt;
+                &lt;img id="modalImg" src="" alt="Food Image"&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-text-col"&gt;
+                &lt;h2 id="modalTitle" class="modal-title"&gt;Title&lt;/h2&gt;
+                &lt;div id="modalDesc" class="modal-desc"&gt;Description&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;Made with &lt;span class="footer-heart"&gt;♥&lt;/span&gt; for God's Own Country&lt;/p&gt;
+        &lt;p&gt;&amp;copy; 2026 Kerala Traditional Foods Mini Project. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+
+    &lt;script&gt;
+        function openFoodModal(title, desc, imgSrc) {
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalDesc').innerHTML = desc;
+            document.getElementById('modalImg').src = imgSrc;
+            
+            const modal = document.getElementById('foodModal');
+            modal.style.display = 'flex';
+            // Slight delay to allow CSS transition to work
+            setTimeout(() =&gt; {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeFoodModal() {
+            const modal = document.getElementById('foodModal');
+            modal.classList.remove('show');
+            setTimeout(() =&gt; {
+                modal.style.display = 'none';
+            }, 400); // Matches transition duration
+        }
+
+        // Close when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('foodModal');
+            if (event.target == modal) {
+                closeFoodModal();
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</template>
+    <!-- END CODE TEMPLATES -->
+</body>
+
+</html>

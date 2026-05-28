@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e5e;
+            --accent: #e67e22;
+            --bg-light: #fdfbfb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: var(--bg-light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .hero {
+            height: 65vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.166), rgba(0, 0, 0, 0.4)),
+                url("E:/WDS-Lab/MangaloreBeach.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero a {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 80px 10%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .costal-marquee {
+            background: #f0f7ff;
+            border-bottom: 1px solid rgba(52, 152, 219, 0.2);
+            padding: 12px 0;
+            white-space: nowrap;
+        }
+
+        .section-tile {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tile h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-tile h2::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 2px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-attraction {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .table-attraction th {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .table-attraction td {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.4s ease;
+        }
+
+        .table-attraction tr:hover {
+            background: #f8fbff;
+            box-shadow: inset 8px 0 0 var(--primary);
+        }
+
+        .table-img {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            float: right;
+            margin-left: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .table-attraction tr:hover .table-img {
+            transform: scale(1.1) rotate(4deg);
+        }
+
+        .mini-tag {
+            font-size: 10px;
+            background: #e1f0fa;
+            color: var(--primary);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .highlight-text {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="home" class="hero">
+        <h2>Experience Kudla</h2>
+        <p>
+            From sun-drenched beaches to centuries-old traditions, discover the
+            gateway to Karnataka's coast.
+        </p>
+        <a href="#places">Explore Now</a>
+    </section>
+    <div class="costal-marquee">
+        <marquee behavior="alternate">
+            Where heritage ripples and the Arabian Sea whispers
+        </marquee>
+    </div>
+    <section id="places">
+        <div class="section-tile">
+            <h2>Top Attractions</h2>
+        </div>
+        <div class="table-container">
+            <table class="table-attraction">
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Experience</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Panambur Beach</strong> <br />
+                            <div class="mini-tag">Coastal</div>
+                        </td>
+                        <td>
+                            <img src="E:/WDS-Lab/panambur_beach.jpg" alt="Panambur Beach Picture" class="table-img" />
+                            The heartbeat of Mangalore’s coastline. Famous for its golden
+                            sands, jet skiing, and the International Kite Festival.
+                            <br />
+                            <span class="highlight-text"> Best for Sunsets</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Pilikula Park</strong> <br />
+                            <div class="mini-tag">Eco Tourism</div>
+                        </td>
+                        <td>
+                            <img src="E:/WDS-Lab/Pilikula_park.jpg" alt="Pilikula Park Picture" class="table-img" />
+                            A massive 400-acre retreat featuring a biological park, a
+                            heritage village showing Tulu culture, and a serene boating lake.
+                            <br />
+                            <span class="highlight-text"> Family Friendly</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Butterfly Park</strong> <br />
+                            <div class="mini-tag">Nature</div>
+                        </td>
+                        <td>
+                            <img src="E:/WDS-Lab/Butterfly_Park.png" alt="Butterfly Park Picture" class="table-img" />
+                            An enchanting reserve in Belvai hosting over 150 species. A
+                            quiet paradise for photographers and nature enthusiasts.
+                            <br />
+                            <span class="highlight-text"> Hidden Gem</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <h2>Plan your Trip</h2>
+        <p>Ready to explore Mangaluru? We are here to help.</p>
+        <strong> tourism@mangalore.com</strong>
+    </section>
+</body>
+
+</html>

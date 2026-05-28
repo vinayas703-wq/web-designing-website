@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduHub | Learning Resources</title>
+    <meta name="description" content="Downloadable learning materials and syllabus.">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .resource-list { list-style: none; padding: 0; }
+        .resource-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem; border-bottom: 1px solid var(--glass-border);
+        }
+        .resource-item:last-child { border-bottom: none; }
+        .download-btn {
+            background: rgba(0, 206, 201, 0.2);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;
+        }
+        .download-btn:hover { background: var(--secondary-color); color: #fff; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">EduHub</div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="maths.html">Maths</a></li>
+                <li><a href="tech.html">Tech</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="videos.html">Videos</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Learning Resources</h1>
+        <p>Download free study materials, e-books, and syllabus documents to assist your studies.</p>
+
+        <div class="glass-card" style="margin-top: 2rem;">
+            <h2>Undergraduate Materials</h2>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span>Physics 101 Formula Sheet (PDF)</span>
+                    <a href="#" class="download-btn">Download</a>
+                </li>
+                <li class="resource-item">
+                    <span>Data Structures Cheat Sheet (PDF)</span>
+                    <a href="#" class="download-btn">Download</a>
+                </li>
+                <li class="resource-item">
+                    <span>Modern History Timeline Notes (Word)</span>
+                    <a href="#" class="download-btn">Download</a>
+                </li>
+                <li class="resource-item">
+                    <span>Organic Chemistry Mechanisms (PDF)</span>
+                    <a href="#" class="download-btn">Download</a>
+                </li>
+                <li class="resource-item">
+                    <span>Calculus III Practice Exams (ZIP)</span>
+                    <a href="#" class="download-btn">Download</a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EduHub. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

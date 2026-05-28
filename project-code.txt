@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Traditional Foods - Mini Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+        :root {
+            --blush: #ffe4e1;
+            --maroon: #800000;
+            --gold: #d4af37;
+            --dark-green: #2e4a2e;
+            --light-cream: #fffdf9;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--blush);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            background-color: var(--maroon);
+            color: var(--gold);
+            padding: 12px 0;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .marquee-content {
+            animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(255,228,225,0.85), rgba(255,228,225,0.95)), url('https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&w=1920&q=80') center/cover;
+            border-bottom: 6px solid var(--gold);
+            position: relative;
+        }
+
+        .animated-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: var(--maroon);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            margin: 0;
+            animation: popIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--dark-green);
+            margin-top: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            animation: fadeIn 1.5s ease-in 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Grid */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .food-card {
+            background: var(--light-cream);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 50px rgba(128, 0, 0, 0.15);
+            border-color: var(--gold);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .food-card:hover img {
+            transform: scale(1.15) rotate(2deg);
+        }
+
+        .card-content {
+            padding: 30px 25px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to top, #fffdf9, #ffffff);
+        }
+
+        .card-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 2rem;
+            margin: 0 0 15px 0;
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn-animated {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: var(--dark-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 8px 15px rgba(46, 74, 46, 0.2);
+            align-self: center;
+        }
+
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background-color: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: -1;
+        }
+
+        .btn-animated:hover::before {
+            width: 100%;
+        }
+        
+        .btn-animated:hover {
+            color: var(--maroon);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(46, 74, 46, 0.3);
+        }
+
+        /* Food Modal Styling */
+        .food-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .food-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .food-modal-content {
+            background-color: var(--light-cream);
+            border-radius: 25px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            border: 2px solid var(--gold);
+        }
+
+        .food-modal.show .food-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-image-col {
+            flex: 1;
+            min-width: 45%;
+        }
+
+        .modal-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-text-col {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--maroon);
+            border: 2px solid var(--maroon);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--maroon);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .modal-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .food-modal-content {
+                flex-direction: column;
+            }
+            .modal-image-col {
+                height: 250px;
+                min-width: 100%;
+            }
+            .animated-title {
+                font-size: 3.2rem;
+            }
+        }
+
+        /* Floating Back Button */
+        .back-btn-container {
+            text-align: center;
+            margin: 80px 0 40px 0;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 16px 45px;
+            background: var(--maroon);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 10px 25px rgba(128,0,0,0.25);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-back:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px rgba(128,0,0,0.35);
+            background: var(--gold);
+            color: var(--maroon);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer-heart {
+            color: var(--gold);
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes beat {
+            to { transform: scale(1.4); }
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee-container">
+        <div class="marquee-content">
+            ✦ Welcome to the flavorful world of Kerala! Experience the rich culinary heritage of God's Own Country. Spices, Coconuts, and Tradition in every bite! ✦
+        </div>
+    </div>
+
+    <header>
+        <h1 class="animated-title">Kerala Traditional Foods</h1>
+        <p class="subtitle">A Journey Through the Flavors of God's Own Country</p>
+    </header>
+
+    <div class="container">
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/appam_with_stew_1778772251094.png" alt="Appam with Stew" onerror="this.src='https://images.unsplash.com/photo-1626200419189-3b58be1461f0?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Appam with Stew</h3>
+                    <p>A soft and fluffy pancake made from fermented rice batter, served with a creamy coconut-based stew.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Appam with Stew', 'Appam with Stew is arguably one of the most famous and beloved traditional dishes in Kerala. Appam is a type of pancake made from fermented rice batter and coconut milk. The edges are delightfully crisp, while the center remains soft, fluffy, and slightly sweet.<br><br>It is almost always paired with Ishtu or Stew, which can be made with vegetables, chicken, or mutton. The vegetable stew is a creamy, aromatic curry made with potatoes, carrots, green peas, and beans, all gently simmered in a rich coconut milk base.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/puttu_kadala_1778772450998.png" alt="Puttu and Kadala" onerror="this.src='https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Puttu and Kadala</h3>
+                    <p>Steamed cylinders of ground rice layered with coconut, typically served with a spicy black chickpea curry.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Puttu and Kadala', 'Puttu is an iconic breakfast dish of Kerala, consisting of steamed cylinders of ground rice layered with fresh grated coconut. It\'s often made in a special cylindrical steamer known as a \'puttu kutti\'.<br><br>The classic accompaniment to puttu is Kadala Curry, a spicy and robust dish made with black chickpeas, roasted coconut gravy, and aromatic Kerala spices. The contrast between the soft, mild puttu and the fiery, flavorful curry makes it an irresistible combination.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/karimeen_pollichathu_1778772700086.png" alt="Karimeen Pollichathu" onerror="this.src='https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Karimeen Pollichathu</h3>
+                    <p>Pearl spot fish marinated in spices, wrapped in banana leaves, and pan-fried to perfection.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Karimeen Pollichathu', 'Karimeen, or Pearl Spot fish, is the state fish of Kerala and a staple of the backwaters. In Karimeen Pollichathu, the fish is marinated in a vibrant mixture of lemon juice, red chilies, turmeric, and other local spices.<br><br>It is then wrapped snugly in fresh banana leaves and pan-roasted or grilled. The banana leaf imparts a unique, earthy aroma to the fish, while keeping the flesh incredibly moist and flavorful. This is a must-try dish for seafood lovers.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/palada_payasam.png" alt="Palada Payasam" onerror="this.src='https://images.unsplash.com/photo-1563805042-7684c8e9e9cb?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Palada Payasam</h3>
+                    <p>A sweet and rich dessert made with rice flakes, milk, and sugar, flavored with cardamom.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Palada Payasam', 'A traditional Kerala feast (Sadya) is never complete without a serving of Palada Payasam. It is a sweet, rich, and creamy dessert that holds a special place in Kerala cuisine, especially during festivals like Onam.<br><br>It is made by simmering Ada (rice flakes) in a sweet reduction of milk and sugar until it reaches a beautiful pinkish hue. The dessert is subtly flavored with cardamom and generously garnished with ghee-roasted cashews and raisins.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/kerala_beef_fry_1778773464575.png" alt="Kerala Beef Fry" onerror="this.src='https://images.unsplash.com/photo-1606471191009-63994c53433b?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Kerala Beef Fry</h3>
+                    <p>Tender chunks of beef slow-roasted with aromatic spices, coconut slices, and curry leaves.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Kerala Beef Fry', 'Kerala Beef Fry, often called \'Beef Ularthiyathu\', is a legendary dish characterized by its dark, caramelized appearance and explosive flavors. It consists of tender chunks of beef that are slow-roasted over low heat.<br><br>The magic lies in the generous use of coconut oil, toasted coconut slices (thenga kothu), fresh curry leaves, and a potent blend of spices like black pepper, fennel, and coriander. It is most commonly enjoyed with flaky Kerala Parotta.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80" alt="Malabar Biriyani" onerror="this.src='https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Malabar Biriyani</h3>
+                    <p>A flavorful and fragrant biriyani made with short-grain kaima rice, meat, and traditional spices.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Malabar Biriyani', 'Originating from the Malabar region of Kerala, this Biriyani is distinct from its North Indian counterparts. It uses a special, highly fragrant short-grain rice called \'Khaima\' or \'Jeerakasala\' instead of Basmati.<br><br>The meat (chicken, mutton, or fish) is cooked separately in a rich masala, and then layered with the semi-cooked rice. The pot is sealed to trap the steam (\'dum\' cooking), allowing the aromatic flavors of ghee, fried onions, cashews, and spices to meld beautifully.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="images/erissery_1778774768900.png" alt="Erissery" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Erissery</h3>
+                    <p>A traditional curry made with pumpkin, cowpeas, and a roasted coconut paste.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Erissery', 'Erissery is a quintessential Kerala dish, widely prepared during festivals like Onam and Vishu. It features a harmonious blend of mildly sweet vegetables like pumpkin or plantain with legumes like cowpeas.<br><br>The dish is elevated by two distinct coconut additions: a ground paste of coconut, cumin, and garlic cooked with the vegetables, and a final tempering of grated coconut roasted in coconut oil until deep golden brown, adding an irresistible crunch and nutty aroma.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="Avial" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Avial</h3>
+                    <p>A thick mixture of various vegetables and coconut, seasoned with coconut oil and curry leaves.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Avial', 'Avial is a highly nutritious and vibrant medley of locally available vegetables like yam, drumsticks, carrots, beans, and ash gourd. According to legend, it was invented by Bhima of the Pandavas during their exile.<br><br>The vegetables are cooked in minimal water and combined with a coarse paste of grated coconut, cumin, and green chilies. It is given a slight tang with yogurt or raw mango, and finished with a generous drizzle of fresh coconut oil and aromatic curry leaves.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="E:/WDS-Lab/pazham_poori.jpg" alt="Pazham Pori" onerror="this.src='https://images.unsplash.com/photo-1603569283847-aa295f0d016a?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Pazham Pori</h3>
+                    <p>Sweet ripe plantains coated in a seasoned flour batter and deep-fried to a golden crisp.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Pazham Pori', 'Pazham Pori, also known as Ethakka Appam, is the ultimate tea-time snack in Kerala. It perfectly balances the natural sweetness of ripe Nendran plantains with a crispy, savory exterior.<br><br>Thick slices of the ripe plantain are dipped in a batter made of all-purpose flour, a pinch of turmeric for that golden color, and sugar, before being deep-fried in hot coconut oil. The result is a snack that is crispy on the outside and warm, sweet, and melting on the inside.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&w=800&q=80" alt="Kerala Parotta" onerror="this.src='https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="card-content">
+                    <h3>Kerala Parotta</h3>
+                    <p>A flaky, layered flatbread made from maida, popular across the state for its soft and crispy texture.</p>
+                    <button class="btn-animated" onclick="openFoodModal('Kerala Parotta', 'Kerala Parotta, or simply \'Porotta\', is a layered, flaky flatbread that has gained immense popularity across South India. Unlike North Indian parathas, it is made from Maida (refined wheat flour).<br><br>The dough is kneaded to be highly elastic, then stretched paper-thin, pleated, and rolled into a spiral before being pan-fried with generous amounts of oil or ghee. The finished parotta is crushed with the hands to separate its many crisp, tender layers, making it the perfect vehicle for soaking up rich, spicy curries.', this.parentElement.previousElementSibling.querySelector('img').src)">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-btn-container">
+            <a href="basic_web_designing_skills.html" class="btn-back">← Back to Course Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Food Detail Modal -->
+    <div id="foodModal" class="food-modal">
+        <div class="food-modal-content">
+            <div class="modal-close" onclick="closeFoodModal()">&times;</div>
+            <div class="modal-image-col">
+                <img id="modalImg" src="" alt="Food Image">
+            </div>
+            <div class="modal-text-col">
+                <h2 id="modalTitle" class="modal-title">Title</h2>
+                <div id="modalDesc" class="modal-desc">Description</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with <span class="footer-heart">♥</span> for God's Own Country</p>
+        <p>&copy; 2026 Kerala Traditional Foods Mini Project. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openFoodModal(title, desc, imgSrc) {
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalDesc').innerHTML = desc;
+            document.getElementById('modalImg').src = imgSrc;
+            
+            const modal = document.getElementById('foodModal');
+            modal.style.display = 'flex';
+            // Slight delay to allow CSS transition to work
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeFoodModal() {
+            const modal = document.getElementById('foodModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 400); // Matches transition duration
+        }
+
+        // Close when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('foodModal');
+            if (event.target == modal) {
+                closeFoodModal();
+            }
+        }
+    </script>
+</body>
+</html>

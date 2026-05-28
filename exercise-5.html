@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 5 - Web Development Skills</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="resources.html">Resources</a>
+  </nav>
+
+  <main>
+    <div class="page-container">
+      <h2>Exercise 5</h2>
+
+      <!-- USER CODE AREA: You can add, edit, or modify your code below -->
+
+      <div class="code-area">
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Job Application Biodata Form</title>
+          <style>
+            /* CSS resets */
+            * {
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            body {
+              background-color: #f0f4f8;
+              color: #333;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-height: 100vh;
+              padding: 2rem;
+            }
+
+            .container {
+              background: #ffffff;
+              padding: 2.5rem;
+              border-radius: 12px;
+              box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+              width: 100%;
+              position: relative;
+            }
+
+            @keyframes slideInGlow {
+              0% {
+                transform: translateY(-20px);
+                opacity: 0;
+                text-shadow: 0 0 0 rgba(79, 70, 229, 0);
+              }
+
+              50% {
+                text-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+              }
+
+              100% {
+                transform: translateY(0);
+                opacity: 1;
+                text-shadow: 0 0 0 rgba(79, 70, 229, 0);
+              }
+            }
+
+            @keyframes pulseGlow {
+              0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+              }
+
+              50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 10px 5px rgba(79, 70, 229, 0.3);
+              }
+
+              100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+              }
+            }
+
+            h1 {
+              color: #4f46e5;
+              text-align: center;
+              margin-bottom: 2rem;
+              animation: slideInGlow 1.5s ease-out forwards;
+            }
+
+            /* Form elements grid */
+            .form-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1.5rem;
+            }
+
+            .full-width {
+              grid-column: span 2;
+            }
+
+            .form-group {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+            }
+
+            label {
+              font-weight: 600;
+              font-size: 0.95rem;
+              color: #4b5563;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="url"],
+            input[type="number"],
+            input[type="tel"],
+            input[type="date"],
+            input[type="file"],
+            select,
+            textarea {
+              width: 100%;
+              padding: 0.75rem;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              font-size: 1rem;
+              transition: border-color 0.3s;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+              outline: none;
+              border-color: #4f46e5;
+              box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            }
+
+            /* HTML5 Valid/Invalid States Styles (optional but good for UX) */
+            input:not(:placeholder-shown):valid,
+            textarea:not(:placeholder-shown):valid {
+              border-color: #10b981;
+            }
+
+            input:not(:placeholder-shown):invalid,
+            textarea:not(:placeholder-shown):invalid {
+              border-color: #ef4444;
+            }
+
+            /* Radio and Checkbox */
+            .options-group {
+              display: flex;
+              gap: 1.5rem;
+              align-items: center;
+              height: 100%;
+            }
+
+            .radio-wrapper,
+            .checkbox-wrapper {
+              display: flex;
+              align-items: center;
+              gap: 0.4rem;
+            }
+
+            /* Submit Button */
+            button[type="submit"] {
+              grid-column: span 2;
+              background-color: #4f46e5;
+              color: white;
+              font-size: 1.1rem;
+              font-weight: bold;
+              padding: 1rem;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              margin-top: 1rem;
+              transition: background-color 0.3s;
+              animation: pulseGlow 2.5s infinite;
+            }
+
+            button[type="submit"]:hover {
+              background-color: #4338ca;
+            }
+
+            /* Pure CSS Success Message Trick */
+            .success-box {
+              display: none;
+              background-color: #d1fae5;
+              color: #065f46;
+              padding: 3rem;
+              text-align: center;
+              border-radius: 12px;
+              border: 2px solid #34d399;
+            }
+
+            .success-box h2 {
+              font-size: 2rem;
+              margin-bottom: 1rem;
+            }
+
+            /* When the URL has #submit_success */
+            #submit_success:target {
+              display: block;
+            }
+
+            /* Hide the form when success is shown */
+            #submit_success:target+#biodata-form {
+              display: none;
+            }
+
+            /* Responsive */
+            @media (max-width: 600px) {
+              .form-grid {
+                grid-template-columns: 1fr;
+              }
+
+              .full-width {
+                grid-column: 1;
+              }
+
+              button[type="submit"] {
+                grid-column: 1;
+              }
+            }
+          </style>
+        </head>
+
+        <body>
+          <div class="container">
+            <!-- Target div for purely CSS-based form submission response -->
+            <div id="submit_success" class="success-box">
+              <h2>Application Submitted successfully.</h2>
+              <p>Thank you for submitting your biodata. We will get back to you soon.</p>
+              <br>
+              <a href="biodata.html" style="color: #065f46; font-weight: bold; padding-top: 10px;">Fill another
+                application</a>
+            </div>
+            <form id="biodata-form" action="#submit_success" method="get">
+              <h1>Biodata Application Form</h1>
+              <div class="form-grid">
+                <!-- Textbox with minlength/maxlength/required -->
+                <div class="form-group">
+                  <label for="fullname">Full Name *</label>
+                  <input type="text" id="fullname" name="fullname" placeholder="John Doe" required minlength="3"
+                    maxlength="50">
+                </div>
+                <!-- Email with type=email -->
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <!-- Date with type=date -->
+                <div class="form-group">
+                  <label for="dob">Date of Birth *</label>
+                  <input type="date" id="dob" name="dob" required max="2008-01-01"
+                    title="Must be at least 18 years old">
+                </div>
+                <!-- Number with min and max -->
+                <div class="form-group">
+                  <label for="age">Age *</label>
+                  <input type="number" id="age" name="age" required min="18" max="65" placeholder="18-65">
+                </div>
+                <!-- Phone with Pattern Match -->
+                <div class="form-group">
+                  <label for="phone">Phone Number *</label>
+                  <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10 Digits"
+                    title="Please enter a 214 10-digit phone number">
+                </div>
+                <!-- URL -->
+                <div class="form-group">
+                  <label for="linkedin">LinkedIn Profile URL</label>
+                  <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/...">
+                </div>
+                <!-- Option Buttons (Radio) -->
+                <div class="form-group">
+                  <label>Gender *</label>
+                  <div class="options-group">
+                    <label class="radio-wrapper"><input type="radio" name="gender" value="male" required>
+                      Male</label>
+                    <label class="radio-wrapper"><input type="radio" name="gender" value="female" required>
+                      Female</label>
+                    <label class="radio-wrapper"><input type="radio" name="gender" value="other" required>
+                      Other</label>
+                  </div>
+                </div>
+                <!-- Dropdown Listbox -->
+                <div class="form-group">
+                  <label for="education">Highest Qualification *</label>
+                  <select id="education" name="education" required>
+                    <option value="" disabled selected>Select your degree</option>
+                    <option value="highschool">High School</option>
+                    <option value="bachelor">Bachelor's Degree</option>
+                    <option value="master">Master's Degree</option>
+                    <option value="phd">Ph.D.</option>
+                  </select>
+                </div>
+                <!-- Multiple Listbox -->
+                <div class="form-group full-width">
+                  <label for="skills">Key Skills (Hold Ctrl/Cmd to select multiple) *</label>
+                  <select id="skills" name="skills" multiple required size="4">
+                    <option value="html">HTML5</option>
+                    <option value="css">CSS3</option>
+                    <option value="js">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="sql">SQL Database</option>
+                  </select>
+                </div>
+                <!-- Textarea -->
+                <div class="form-group full-width">
+                  <label for="address">Residential Address *</label>
+                  <textarea id="address" name="address" rows="3" required minlength="10" maxlength="200"
+                    placeholder="Full street 259 address..."></textarea>
+                </div>
+                <!-- File Upload -->
+                <div class="form-group">
+                  <label for="resume">Upload Resume (PDF/DOC) *</label>
+                  <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+                <!-- Checkbox -->
+                <div class="form-group">
+                  <label>Declaration *</label>
+                  <div class="options-group">
+                    <label class="checkbox-wrapper">
+                      <input type="checkbox" name="declaration" required>
+                      I verify that the information is accurate.
+                    </label>
+                  </div>
+                </div>
+                <!-- Submit Button -->
+                <button type="submit">Submit Application</button>
+              </div>
+            </form>
+          </div>
+        </body>
+
+        </html>
+        <!-- Add your HTML content for Exercise 5 here -->
+        <p></p>
+      </div>
+      <!-- END USER CODE AREA -->
+
+      <div style="text-align: center;">
+        <a href="basic_web_designing_skills.html" class="btn-back">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

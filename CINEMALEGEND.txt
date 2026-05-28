@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Indian cricket legends</title>
+</head>
+<body bgcolor="#f0f8ff"
+text="#333333">
+
+ <header>
+  <h1 align="center">
+   <font color="#0038a8"soze="7" face="Arial>Indian Cricket Superstars</font>
+     </h1>
+     <p align="center">
+      <font size="4">Celebrating the heroes of the "Men in Blue"</font>
+     </p>
+    </header>
+
+<hr size="5" color="#ff9933">
+
+<marquee bgcolor="#0038a3" height="40" direction="left" scrollamount="10">
+  font color="white" size="5" face="Verdana">
+    &nbsp;&nbsp;Breaking News:India wins the 2026 T20 World Cup!&nbsp;|&nbsp;Virat kohli hits 85th Century! &nbsp;|&nbsp;Bumrah takes a Hat-trick!
+      </font>
+    </marquee>
+
+   <br><br>
+
+<section>
+ <h2 align="center">
+   <font color="#0038a8" face="Arial">VIRAT KOHLI</font>
+         </h2>
+
+     <p align="center">
+      <img src="E:\WDS-Lab\kohli.webp" width="200" height="200" border="5" alt="Virat Kohli">
+  </p>
+
+<p align="center">
+<b>"The King of Cricket"</b>
+      <br><br>
+Virat Kohli is world renowed for his passion, fitness, and ability to chase down targets.
+ he is one of the greatest batsmen to ever play the game, holdinh numerous world records.
+     </p>
+</section>
+<hr width="50%" size="2" color="#cccccc">
+
+<section>
+<h2 align="center">
+ <font color="#0038a8" face="Arial">MS DHONI</font>
+</h2>
+<p align="center">
+  <img src="E:\WDS-Lab\dhoni.webp" width="200" border="5" alt="MS Dhoni">
+</p>
+        
+        <p align="center">
+            <b>"The Captain Cool"</b>
+            <br><br>
+            Under MS Dhoni's leadership, India won the 2007 T20 World Cup, 2011 ODI World Cup, and 2013 Champions Trophy. 
+            He is famously known for his "Helicopter Shot" and lightning-fast stumping.
+        </p>
+    </section>
+
+    <hr width="50%" size="2" color="#cccccc">
+
+    <section>
+        <h2 align="center">
+            <font color="#0038a8" face="Arial">ROHIT SHARMA</font>
+        </h2>
+        
+        <p align="center">
+            <img src="E:\WDS-Lab\rohithsharma.webp" width="200" height="200" border="5" alt="Rohit Sharma">
+        </p>
+        
+        <p align="center">
+            <b>"The Hitman"</b>
+            <br><br>
+            Rohit Sharma is the only player to score three double-centuries in One Day Internationals. 
+            His elegant batting style and captaincy led India to global success in 2024.
+        </p>
+    </section>
+
+    <br>
+
+    <footer align="center">
+        <hr size="5" color="#128807">
+        <p>
+            <font size="2" face="Courier">&copy; 2026 Cricket Fan Page - Made with Pure HTML</font>
+        </p>
+    </footer>
+
+</body>
+</html>
+
+    </header>
+
+<hr size="5" color="#ff9933">
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legends of Malayalam Cinema</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #f5f0eb; font-family: Arial, sans-serif; }
+    h1.main-header { text-align: center; font-size: 2.5rem; color: #ff00bb; background-color: #003366; padding: 20px; letter-spacing: 2px; font-family: Georgia, serif; }
+    marquee.ticker-top { background-color: #00ff48; color: black; font-size: 1rem; padding: 8px 0; font-weight: bold; }
+    hr.divider { border: none; border-top: 3px solid #ff0008; }
+    hr.mid { border: none; border-top: 3px solid #ff00d0; margin: 20px auto; max-width: 900px; }
+    section.intro { max-width: 900px; margin: 0 auto; padding: 20px 30px; background-color: #eff5f9; }
+    h2.intro-heading { font-family: Georgia, serif; color: #5f6600; font-size: 1.8rem; margin-bottom: 12px; text-align: center; }
+    p.intro-text { color: #333; line-height: 1.8; font-size: 1.05rem; }
+    h2.legends-heading { text-align: center; font-family: Georgia, serif; color: #003366; font-size: 2rem; margin: 30px 0 10px; }
+    div.cards-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; padding: 20px 30px 40px; }
+    section.actor-card { border: 2px solid #0048ff; border-radius: 12px; padding: 20px; width: 260px; background-color: white; box-shadow: 0 4px 16px rgba(0,51,102,0.15); text-align: center; }
+    img.actor-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 3px solid #0022ff; display: block; margin: 0 auto 12px; background: #eee; }
+    h3.actor-name { color: #6f00ff; font-family: Georgia, serif; font-size: 1.2rem; margin: 8px 0 4px; }
+    h4.actor-nickname { color: #bb00ff; font-style: italic; font-size: 1rem; margin: 0 0 10px; }
+    p.actor-born { font-size: 0.88rem; color: #555; margin: 6px 0; }
+    p.actor-bio { font-size: 0.9rem; color: #444; line-height: 1.6; margin: 8px 0; }
+    strong.actor-stats { display: inline-block; margin-top: 10px; background-color: #003366; color: #FF6600; border-radius: 6px; padding: 6px 12px; font-size: 0.85rem; }
+    h2.facts-title { text-align: center; font-family: Georgia, serif; color:#1500ff ; font-size: 1.9rem; margin: 30px 0 10px; }
+    section.facts-section { background-color: #006666; padding: 30px; max-width: 900px; margin: 0 auto 40px; border-radius: 12px; }
+    p.fact-text { font-size: 1rem; line-height: 1.8; margin: 10px 0; color: white; }
+    em.fact-em { color: #FF9933; font-weight: bold; margin-right: 6px; font-style: normal; }
+    section.footer { background-color: #660063; color: white; text-align: center; padding: 20px; }
+    h4.footer-heading { font-family: Georgia, serif; color: #FF6600; font-size: 1.2rem; margin: 0 0 8px; }
+    p.footer-text { font-size: 0.9rem; color: #ccc; margin: 4px 0 12px; }
+    marquee.footer-marquee { color: #FF9933; font-weight: bold; font-size: 1rem; }
+    span.copy { font-size: 0.8rem; color: #aaa; }
+  </style>
+</head>
+<body>
+  <h1 class="main-header">Legends of Malayalam Cinema</h1>
+  <marquee class="ticker-top" behavior="scroll" direction="left" scrollamount="6">
+    Mohanlal - Pillar of Modern Malayalam Cinema &nbsp;|&nbsp;
+    Mammootty - Pillar of Modern Malayalam Cinema &nbsp;|&nbsp;
+    Prem Nazir - Foundational Superstar &nbsp;|&nbsp;
+    Jayan - Iconic Action Superstar &nbsp;|&nbsp;
+    Manju Warrier - Lady Superstar &nbsp;|&nbsp;
+  </marquee>
+  <hr class="divider" />
+  <section class="intro">
+    <h2 class="intro-heading">About Malayalam Cinema</h2>
+    <p class="intro-text">Malayalam cinema, known as "Mollywood", is a prominent Indian film industry based in Kerala, celebrated for its realistic storytelling, high technical quality, and strong literary roots. Originating in the <strong>1920s</strong>, it gained national acclaim in the <strong>1950s</strong> for social realism.</p>
+  </section>
+  <hr class="mid" />
+  <h2 class="legends-heading">🌟 Cinema Legends 🌟</h2>
+  <div class="cards-container">
+    <!-- Example Actor Card -->
+    <section class="actor-card">
+      <h3 class="actor-name">Mohanlal</h3>
+      <img class="actor-img" src="E:\WDS-Lab\Mohanlal.webp" alt="Mohanlal">
+      <h4 class="actor-nickname">Lalettan</h4>
+      <p class="actor-born">Born: 21 May 1960 | Kollam</p>
+      <p class="actor-bio">Mohanlal Vishwanathan is a legendary Indian actor, producer, and playback singer. He has appeared in over 340 films.</p>
+      <p><strong class="actor-stats">Films: 340+ | Awards: 50+ | Languages: Kannada, Malayalam, Tamil</strong></p>
+    </section>
+    <section class="actor-card">
+      <h3 class="actor-name">Mammooty</h3>
+      <img class="actor-img" src="E:\WDS-Lab\Mammootty.webp" alt="mammooty">
+      <h4 class="actor-nickname">Mammukka </h4>
+      <p class="actor-born">Born: 7 September 1951 | Alappuzha</p>
+      <p class="actor-bio">Mammootty  is a legendary Indian actor and producer.earned 3 National Awards-7 Kerala State Awards-13 Filmfare Awards.</p>
+      <p><strong class="actor-stats">Films: 425+ | Awards: 16+ | Languages: Kannada, Malayalam, Tamil</strong></p>
+    </section>
+    <section class="actor-card">
+      <h3 class="actor-name">Prem Nazir</h3>
+      <img class="actor-img" src="E:\WDS-Lab\premnazir.webp" alt="Prem Nazir">
+      <h4 class="actor-nickname">Nithyaharitha Nayakan</h4>
+      <p class="actor-born">Born: 16 December 1929 | Thiruvananthapuram</p>
+      <p class="actor-bio">Prem Nazir  was a legendary Indian actor known as the "Evergreen Hero" of Malayalam cinema.</p>
+      <p><strong class="actor-stats">Films: 720+ | Awards: 20+ | Languages: Malayalam, Tamil</strong></p>
+    </section>
+    <section class="actor-card">
+      <h3 class="actor-name">Jayan</h3>
+      <img class="actor-img" src="E:\WDS-Lab\Jayan.webp" alt="Jayan">
+      <h4 class="actor-nickname">Action king</h4>
+      <p class="actor-born">Born: 25 July 1939 | Thiruvananthapuram</p>
+      <p class="actor-bio">Jayan was known for his muscular physique, deep voice, and daring self-performed stunts. A former Indian Navy Master CPO.</p>
+      <p><strong class="actor-stats">Films:150+ | Awards: 20+ | Languages: Malayalam, Tamil</strong></p>
+    </section>
+    <section class="actor-card">
+      <h3 class="actor-name">Manju Warrier</h3>
+      <img class="actor-img" src="E:\WDS-Lab\manju.webp" alt="Manju Warrier">
+      <h4 class="actor-nickname">Lady Superstar</h4>
+      <p class="actor-born">Born: 10 September 1978 | Tamil Nadu</p>
+      <p class="actor-bio">Manju Warrier is a celebrated Indian actress, producer-classical dancer.</p>
+      <p><strong class="actor-stats">Films: 100+ | Awards: 20+ | Languages: Malayalam, Tamil</strong></p>
+    </section>
+    <!-- Repeat for other actors (Mammootty, Prem Nazir, Jayan, Manju Warrier) -->
+  </div>
+  <hr class="divider" />
+  <h2 class="facts-title">💡 Did You Know?</h2>
+  <section class="facts-section">
+    <p class="fact-text"><em class="fact-em">🎞️ Fact 1:</em> The first Malayalam feature film was the silent movie <strong>Vigathakumaran</strong>.</p>
+    <p class="fact-text"><em class="fact-em">🎞️ Fact 2:</em> <strong>Chemmeen</strong> was the first South Indian film to win the National Film Award for Best Feature Film.</p>
+    <p class="fact-text"><em class="fact-em">🎞️ Fact 3:</em> In 2024, Malayalam cinema achieved a major milestone by crossing ₹1000 crores in box office collections.</p>
+    <p class="fact-text"><em class="fact-em">🎞️ Fact 4:</em> Malayalam cinema is popularly known as "Mollywood".</p>
+    <p class="fact-text"><em class="fact-em">🎞️ Fact 5:</em> Renowned for its realistic, socially relevant, and technically advanced filmmaking.</p>
+  </section>
+  <hr class="divider" />
+  <section class="footer">
+    <h4 class="footer-heading">Malayalam Cinema Legends Website</h4>
+    <p class="footer-text">Celebrating the glory of Malayalam cinema | Data is approximate and for informational purposes</p>
+    <marquee class="footer-marquee" behavior="scroll" direction="left" scrollamount="5">
+      malayalam cinema  &nbsp;|&nbsp; Support malayalam cinema &nbsp;|&nbsp; If you can dream it, you can do it  &nbsp;|&nbsp;
+    </marquee>
+    <br />
+    <span class="copy">&copy; 2026. Built with love for Malayalm cinema Fans</span>
+  </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
