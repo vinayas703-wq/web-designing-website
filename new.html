@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 3 - Web Development Skills</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    table, th, td {
+      border: 2px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    .center-image {
+      display: block;
+      margin: 0 auto;
+    }
+    .button-center {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #cart {
+      margin: 20px auto;
+      width: 50%;
+      border: 2px solid black;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body bgcolor="lightblue">
+  <!-- Corrected header image path -->
+  <img src="images/vegitable.png" alt="Vegetables Banner" class="center-image">
+
+  <table align="center">
+    <thead>
+      <tr>
+        <td>Vegetable</td>
+        <td>Price</td>
+        <td>Add to Cart</td>
+        <td>Vegetable</td>
+        <td>Price</td>
+        <td>Add to Cart</td>
+        <td>Vegetable</td>
+        <td>Price</td>
+        <td>Add to Cart</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="images/tomatoes.jpeg" alt="Tomato" width="200"></td>
+        <td>₹35</td>
+        <td><button onclick="addToCart('Tomato',35)">Add to Cart</button></td>
+
+        <td><img src="images/freshspinach.webp" alt="Spinach" width="200"></td>
+        <td>₹50</td>
+        <td><button onclick="addToCart('Spinach',50)">Add to Cart</button></td>
+
+        <td><img src="images/broccoli.jpg" alt="Broccoli" width="200"></td>
+        <td>₹70</td>
+        <td><button onclick="addToCart('Broccoli',70)">Add to Cart</button></td>
+      </tr>
+
+      <tr>
+        <td><img src="images/brinjal.jpg" alt="Brinjal" width="200"></td>
+        <td>₹40</td>
+        <td><button onclick="addToCart('Brinjal',40)">Add to Cart</button></td>
+
+        <td><img src="images/cabbage.jpg" alt="Cabbage" width="200"></td>
+        <td>₹70</td>
+        <td><button onclick="addToCart('Cabbage',70)">Add to Cart</button></td>
+
+        <td><img src="images/cucumber.jpg" alt="Cucumber" width="200"></td>
+        <td>₹110</td>
+        <td><button onclick="addToCart('Cucumber',110)">Add to Cart</button></td>
+      </tr>
+
+      <tr>
+        <td><img src="images/potato.jpeg" alt="Potato" width="200"></td>
+        <td>₹45</td>
+        <td><button onclick="addToCart('Potato',45)">Add to Cart</button></td>
+
+        <td><img src="images/ginger.jpeg" alt="Ginger" width="200"></td>
+        <td>₹60</td>
+        <td><button onclick="addToCart('Ginger',60)">Add to Cart</button></td>
+
+        <td><img src="images/bittergourd.jpeg" alt="Bitter Gourd" width="200"></td>
+        <td>₹110</td>
+        <td><button onclick="addToCart('Bitter Gourd',110)">Add to Cart</button></td>
+      </tr>
+
+      <tr>
+        <td><img src="images/onion.jpeg" alt="Onion" width="200"></td>
+        <td>₹40</td>
+        <td><button onclick="addToCart('Onion',40)">Add to Cart</button></td>
+
+        <td><img src="images/ladiesfinger.jpg" alt="Ladies Finger" width="200"></td>
+        <td>₹120</td>
+        <td><button onclick="addToCart('Ladies Finger',120)">Add to Cart</button></td>
+
+        <td><img src="images/peas.jpeg" alt="Peas" width="200"></td>
+        <td>₹40</td>
+        <td><button onclick="addToCart('Peas',40)">Add to Cart</button></td>
+      </tr>
+
+      <tr>
+        <td><img src="images/carrot.jpg" alt="Carrot" width="200"></td>
+        <td>₹55</td>
+        <td><button onclick="addToCart('Carrot',55)">Add to Cart</button></td>
+
+        <td><img src="images/capsicum.webp" alt="Capsicum" width="200"></td>
+        <td>₹120</td>
+        <td><button onclick="addToCart('Capsicum',120)">Add to Cart</button></td>
+
+        <td><img src="images/beetroot.jpg" alt="Beetroot" width="200"></td>
+        <td>₹120</td>
+        <td><button onclick="addToCart('Beetroot',120)">Add to Cart</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="submit" class="button-center" onclick="placeOrder()">ORDER NOW</button>
+
+  <div id="cart">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: ₹<span id="cart-total">0</span></strong></p>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(item, price) {
+      cart.push({ item, price });
+      total += price;
+      displayCart();
+    }
+
+    function displayCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach(c => {
+        let li = document.createElement("li");
+        li.textContent = c.item + " - ₹" + c.price;
+        cartItems.appendChild(li);
+      });
+      document.getElementById("cart-total").textContent = total;
+    }
+
+    function placeOrder() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+      } else {
+        alert("Order placed successfully! Total: ₹" + total);
+        cart = [];
+        total = 0;
+        displayCart();
+      }
+    }
+  </script>
+
+</body>
+</html>
